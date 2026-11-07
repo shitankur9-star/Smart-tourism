@@ -1,0 +1,2096 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    min-height: 100vh;
+    color: white;
+    overflow-x: hidden;
+}
+
+
+/* =================================
+   BACKGROUND
+================================= */
+
+.background {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+
+    background:
+        linear-gradient(
+            rgba(4, 12, 25, 0.55),
+            rgba(4, 12, 25, 0.75)
+        ),
+        url("https://images.unsplash.com/photo-1500534623283-312aade485b7")
+        center / cover no-repeat;
+}
+
+
+/* Decorative glow */
+
+body::before {
+    content: "";
+
+    position: fixed;
+
+    width: 500px;
+    height: 500px;
+
+    top: -200px;
+    left: -150px;
+
+    background: rgba(76, 175, 80, 0.25);
+
+    filter: blur(120px);
+
+    border-radius: 50%;
+
+    z-index: -1;
+}
+
+body::after {
+    content: "";
+
+    position: fixed;
+
+    width: 450px;
+    height: 450px;
+
+    right: -150px;
+    bottom: -200px;
+
+    background: rgba(0, 180, 255, 0.15);
+
+    filter: blur(120px);
+
+    border-radius: 50%;
+
+    z-index: -1;
+}
+
+
+/* =================================
+   NAVBAR
+================================= */
+
+.navbar {
+
+    position: fixed;
+
+    top: 20px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: min(1200px, calc(100% - 40px));
+
+    height: 72px;
+
+    padding: 0 12px 0 22px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    /* Glassmorphism */
+
+    background: rgba(255, 255, 255, 0.08);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.25),
+        inset 0 1px rgba(255, 255, 255, 0.12);
+
+    z-index: 1000;
+
+    transition: 0.3s ease;
+}
+
+
+/* =================================
+   LOGO
+================================= */
+
+.logo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 20px;
+
+    font-weight: 700;
+
+    letter-spacing: -0.5px;
+
+    white-space: nowrap;
+}
+
+.logo > span > span {
+    color: #7ee787;
+}
+
+.logo-icon {
+
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: rgba(126, 231, 135, 0.15);
+
+    border: 1px solid rgba(126, 231, 135, 0.25);
+
+    color: #7ee787;
+
+    font-size: 18px;
+}
+
+
+/* =================================
+   NAVIGATION
+================================= */
+
+.nav-links {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    margin-left: auto;
+    margin-right: 25px;
+}
+
+.nav-link {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 11px 16px;
+
+    color: rgba(255, 255, 255, 0.72);
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: 500;
+
+    border-radius: 12px;
+
+    transition:
+        color 0.3s ease,
+        background 0.3s ease,
+        transform 0.3s ease;
+}
+
+.nav-link i {
+    font-size: 13px;
+}
+
+
+/* Hover */
+
+.nav-link:hover {
+
+    color: white;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    transform: translateY(-1px);
+}
+
+
+/* Active */
+
+.nav-link.active {
+
+    color: white;
+
+    background: rgba(255, 255, 255, 0.11);
+
+}
+
+
+/* Active green line */
+
+.nav-link.active::after {
+
+    content: "";
+
+    position: absolute;
+
+    bottom: -1px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 18px;
+
+    height: 2px;
+
+    background: #7ee787;
+
+    border-radius: 10px;
+
+    box-shadow: 0 0 10px #7ee787;
+}
+
+
+/* =================================
+   PROFILE BUTTON
+================================= */
+
+.profile-btn {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    padding: 7px 12px 7px 7px;
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+
+    border-radius: 14px;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    color: white;
+
+    cursor: pointer;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    font-weight: 500;
+
+    transition: 0.3s ease;
+}
+
+.profile-btn:hover {
+
+    background: rgba(255, 255, 255, 0.14);
+
+    border-color: rgba(255, 255, 255, 0.25);
+
+    transform: translateY(-1px);
+}
+
+
+/* Avatar */
+
+.profile-avatar {
+
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: linear-gradient(
+        135deg,
+        #7ee787,
+        #38a169
+    );
+
+    color: #07130a;
+
+    font-size: 14px;
+}
+
+.profile-arrow {
+
+    font-size: 10px;
+
+    margin-left: 2px;
+
+    color: rgba(255, 255, 255, 0.6);
+}
+
+
+/* =================================
+   MOBILE MENU
+================================= */
+
+.menu-btn {
+
+    display: none;
+
+    width: 42px;
+    height: 42px;
+
+    border: 1px solid rgba(255,255,255,0.15);
+
+    border-radius: 12px;
+
+    background: rgba(255,255,255,0.08);
+
+    color: white;
+
+    font-size: 18px;
+
+    cursor: pointer;
+}
+
+
+/* =================================
+   HERO
+================================= */
+
+.hero {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 150px 8% 80px;
+}
+
+.hero-content {
+
+    max-width: 650px;
+}
+
+.hero-tag {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 8px 14px;
+
+    margin-bottom: 25px;
+
+    border-radius: 50px;
+
+    background: rgba(255,255,255,0.08);
+
+    border: 1px solid rgba(255,255,255,0.15);
+
+    backdrop-filter: blur(10px);
+
+    font-size: 13px;
+
+    color: rgba(255,255,255,0.8);
+}
+
+.hero-tag i {
+    color: #7ee787;
+}
+
+.hero h1 {
+
+    font-size: clamp(48px, 7vw, 90px);
+
+    line-height: 0.95;
+
+    letter-spacing: -4px;
+
+    margin-bottom: 25px;
+}
+
+.hero h1 span {
+
+    display: block;
+
+    color: #7ee787;
+}
+
+.hero p {
+
+    max-width: 540px;
+
+    color: rgba(255,255,255,0.7);
+
+    line-height: 1.7;
+
+    font-size: 16px;
+
+    margin-bottom: 30px;
+}
+
+.explore-btn {
+
+    padding: 14px 20px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    background: #7ee787;
+
+    color: #07130a;
+
+    font-family: inherit;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.explore-btn i {
+
+    margin-left: 8px;
+
+    transition: 0.3s ease;
+}
+
+.explore-btn:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow: 0 10px 30px rgba(126,231,135,0.25);
+}
+
+.explore-btn:hover i {
+
+    transform: translateX(4px);
+}
+
+
+/* =================================
+   RESPONSIVE
+================================= */
+
+@media (max-width: 850px) {
+
+    .navbar {
+
+        height: 64px;
+
+        padding-left: 15px;
+
+        padding-right: 10px;
+
+        border-radius: 18px;
+    }
+
+    .nav-links {
+
+        position: absolute;
+
+        top: 75px;
+
+        left: 0;
+
+        width: 100%;
+
+        padding: 10px;
+
+        display: none;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 4px;
+
+        background: rgba(10, 20, 30, 0.75);
+
+        backdrop-filter: blur(25px);
+
+        border: 1px solid rgba(255,255,255,0.12);
+
+        border-radius: 18px;
+
+        margin: 0;
+    }
+
+    .nav-links.show {
+
+        display: flex;
+
+        animation: menuOpen 0.3s ease;
+    }
+
+    .nav-link {
+
+        padding: 14px;
+
+    }
+
+    .nav-link.active::after {
+
+        display: none;
+    }
+
+    .profile-btn span,
+    .profile-arrow {
+
+        display: none;
+    }
+
+    .profile-btn {
+
+        padding: 5px;
+
+        margin-left: auto;
+
+        margin-right: 8px;
+    }
+
+    .menu-btn {
+
+        display: block;
+    }
+}
+
+
+@media (max-width: 500px) {
+
+    .navbar {
+
+        width: calc(100% - 24px);
+
+        top: 12px;
+    }
+
+    .logo {
+
+        font-size: 17px;
+    }
+
+    .logo-icon {
+
+        width: 34px;
+        height: 34px;
+    }
+
+    /* .hero {
+
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
+    .hero h1 {
+
+        font-size: 52px;
+
+        letter-spacing: -2px;
+    } */
+}
+
+
+/* Animation */
+
+@keyframes menuOpen {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(-10px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}
+
+
+
+/* =================================
+   TRIP CARD - GLASSMORPHISM
+================================= */
+
+.mb-3 {
+    max-width: auto;
+
+    margin: 4rem 4rem 1rem 4rem !important;
+
+    /* Dark glass */
+    background: rgba(18, 30, 38, 0.72);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    /* Glass border */
+    border: 1px solid rgba(255, 255, 255, 0.18);
+
+    /* Soft shadow */
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.20);
+}
+
+
+.card.mb-3 {
+    overflow: hidden;
+}
+
+
+/* =================================
+   CARD IMAGE
+================================= */
+
+.card.mb-3 .col-md-5 {
+    min-height: 280px;
+    overflow: hidden;
+}
+
+.card.mb-3 .img-fluid {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition: transform 0.35s ease;
+}
+
+.card.mb-3 .img-fluid:hover {
+    transform: scale(1.05);
+}
+
+
+/* =================================
+   CARD TITLE
+================================= */
+
+.card-title {
+    padding: 30px 30px 10px 30px;
+
+    /* BengalTrail green */
+    color: #69E27D;
+}
+
+.card-title-2 {
+    padding: 5px 30px 30px 30px;
+
+    color: #69E27D;
+}
+
+
+/* =================================
+   CARD DESCRIPTION
+================================= */
+
+.card-text {
+    margin-left: 30px;
+
+    color: #AEBBC0;
+}
+
+
+/* =================================
+   CARD INFORMATION
+================================= */
+
+.card-info {
+    margin-left: 30px;
+    margin-bottom: 20px;
+
+    display: flex;
+
+    gap: 30px;
+
+    color: #D9E1DE;
+}
+
+.text-body-secondary-1 {
+    color: #8E9DA4;
+}
+
+
+/* =================================
+   INTEREST TAG
+================================= */
+
+.inspire-1 {
+
+    padding: 5px 10px;
+
+    /* Green glass */
+    background: rgba(105, 226, 125, 0.12);
+
+    color: #CFEFD5;
+
+    border: 1px solid rgba(105, 226, 125, 0.20);
+
+    border-radius: 25px;
+
+    font-size: 14px;
+}
+
+.inspire {
+
+    display: flex;
+
+    margin-left: 30px;
+
+    gap: 15px;
+}
+
+
+/* =================================
+   VIEW DETAILS BUTTON
+================================= */
+
+.view-details {
+
+    margin-left: 30px;
+
+    padding: 10px 20px;
+
+    background: #69E27D;
+
+    color: #102018;
+
+    border: none;
+
+    border-radius: 25px;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.view-details:hover {
+
+    background: #58D86E;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(105, 226, 125, 0.25);
+}
+
+
+/* =================================
+   TRIP MODAL
+================================= */
+
+.trip-modal {
+
+    position: fixed;
+
+    inset: 0;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0, 0, 0, 0.72);
+
+    z-index: 1100;
+
+    padding: 24px;
+
+    overflow-y: auto;
+}
+
+.trip-modal.active {
+    display: flex;
+}
+
+
+/* =================================
+   MODAL CONTENT
+================================= */
+
+.trip-modal-content {
+
+    position: relative;
+
+    width: min(760px, 100%);
+
+    max-height: min(90vh, 920px);
+
+    /* Dark glass */
+    background: rgba(14, 25, 32, 0.96);
+
+    border-radius: 28px;
+
+    border: 1px solid rgba(255, 255, 255, 0.14);
+
+    box-shadow:
+        0 35px 90px rgba(0, 0, 0, 0.45);
+
+    overflow: hidden;
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+/* =================================
+   MODAL BODY
+================================= */
+
+.modal-body {
+
+    padding: 28px 32px 36px;
+
+    overflow-y: auto;
+
+    flex: 1 1 auto;
+}
+
+
+/* =================================
+   CLOSE BUTTON
+================================= */
+
+.close-modal {
+
+    position: absolute;
+
+    top: 20px;
+    right: 20px;
+
+    width: 42px;
+    height: 42px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.10);
+
+    color: #F5F7F6;
+
+    font-size: 24px;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.close-modal:hover {
+
+    background: rgba(105, 226, 125, 0.18);
+
+    color: #69E27D;
+
+    transform: rotate(90deg);
+}
+
+
+/* =================================
+   MODAL IMAGE
+================================= */
+
+.modal-image {
+
+    width: 100%;
+
+    height: 320px;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+
+/* =================================
+   MODAL TEXT
+================================= */
+
+.modal-body {
+
+    padding: 28px 32px 36px;
+}
+
+.modal-category,
+.modal-route,
+.modal-description,
+.trip-info span,
+.ai-match,
+#modalRecommended {
+
+    color: rgba(245, 247, 246, 0.82);
+}
+
+
+/* =================================
+   TRIP INFORMATION
+================================= */
+
+.trip-info {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 16px;
+
+    margin: 18px 0;
+
+    color: #69E27D;
+}
+
+
+/* =================================
+   TRIP TAGS
+================================= */
+
+.trip-tags {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-bottom: 20px;
+}
+
+.tag {
+
+    /* Green glass */
+    background: rgba(105, 226, 125, 0.12);
+
+    color: #69E27D;
+
+    border: 1px solid rgba(105, 226, 125, 0.18);
+
+    padding: 8px 14px;
+
+    border-radius: 999px;
+
+    font-size: 14px;
+}
+
+
+/* =================================
+   BOOK BUTTON
+================================= */
+
+.book-btn {
+
+    margin-top: 20px;
+
+    padding: 14px 22px;
+
+    border: none;
+
+    border-radius: 18px;
+
+    background: #69E27D;
+
+    color: #102018;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.book-btn:hover {
+
+    background: #58D86E;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 25px rgba(105, 226, 125, 0.25);
+}
+
+/* ================================
+   GLASSMORPHISM FOOTER
+================================ */
+
+.glass-footer {
+    position: relative;
+
+    width: 100%;
+
+    margin-top: 80px;
+
+    padding: 70px 8% 25px;
+
+    /* DARK GLASS */
+    background: rgba(15, 25, 32, 0.82);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+
+    border-radius: 55px 55px 0 0;
+
+    box-shadow:
+        0 -10px 40px rgba(0, 0, 0, 0.25);
+
+    overflow: hidden;
+}
+
+
+/* ================================
+   SUBTLE GLASS SHINE
+================================ */
+
+.glass-footer::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 10%;
+
+    width: 80%;
+    height: 1px;
+
+    background: rgba(255, 255, 255, 0.35);
+}
+
+
+/* ================================
+   FOOTER CONTAINER
+================================ */
+
+.footer-container {
+
+    max-width: 1400px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        1.5fr
+        1fr
+        1.2fr
+        1.4fr;
+
+    gap: 70px;
+}
+
+
+/* ================================
+   BRAND
+================================ */
+
+.footer-brand h2 {
+
+    font-size: 32px;
+
+    font-weight: 700;
+
+    margin-bottom: 25px;
+
+    color: #F5F7F6;
+}
+
+.footer-brand p {
+
+    max-width: 330px;
+
+    font-size: 16px;
+
+    line-height: 1.65;
+
+    color: #AEBBC0;
+
+    margin-bottom: 35px;
+}
+
+
+/* ================================
+   FOOTER HEADINGS
+================================ */
+
+.footer-column h3 {
+
+    font-size: 21px;
+
+    font-weight: 600;
+
+    color: #F5F7F6;
+
+    margin-bottom: 30px;
+}
+
+
+/* ================================
+   QUICK LINKS
+================================ */
+
+.footer-column ul {
+
+    list-style: none;
+
+    padding: 0;
+
+    margin: 0;
+}
+
+.footer-column ul li {
+
+    margin-bottom: 18px;
+}
+
+.footer-column ul li a {
+
+    color: #AEBBC0;
+
+    text-decoration: none;
+
+    font-size: 16px;
+
+    transition: 0.3s ease;
+}
+
+.footer-column ul li a:hover {
+
+    color: #69E27D;
+
+    padding-left: 5px;
+}
+
+
+/* ================================
+   SOCIAL ICONS
+================================ */
+
+.social-icons {
+
+    display: flex;
+
+    gap: 18px;
+}
+
+.social-icons a {
+
+    width: 52px;
+    height: 52px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    text-decoration: none;
+
+    color: #102018;
+
+    /* BENGALTRAIL GREEN */
+    background: #69E27D;
+
+    box-shadow:
+        0 8px 20px rgba(105, 226, 125, 0.20);
+
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+
+    transform: translateY(-5px) scale(1.05);
+
+    box-shadow:
+        0 12px 25px rgba(105, 226, 125, 0.30);
+}
+
+
+/* ================================
+   CONTACT
+================================ */
+
+.contact-item {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-bottom: 25px;
+
+    color: #AEBBC0;
+
+    font-size: 16px;
+}
+
+.contact-item i {
+
+    width: 22px;
+
+    color: #69E27D;
+
+    font-size: 17px;
+}
+
+
+/* ================================
+   SUBSCRIBE
+================================ */
+
+.subscribe-column p {
+
+    color: #AEBBC0;
+
+    font-size: 15px;
+
+    line-height: 1.6;
+
+    margin-bottom: 20px;
+}
+
+.subscribe-form {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 15px;
+}
+
+.subscribe-form input {
+
+    width: 100%;
+
+    height: 56px;
+
+    padding: 0 16px;
+
+    font-size: 16px;
+
+    color: #1C2529;
+
+    /* LIGHT GLASS INPUT */
+    background: rgba(255, 255, 255, 0.88);
+
+    border: 1px solid rgba(255, 255, 255, 0.25);
+
+    border-radius: 7px;
+
+    outline: none;
+
+    transition: 0.3s ease;
+}
+
+.subscribe-form input:focus {
+
+    border-color: #69E27D;
+
+    box-shadow:
+        0 0 0 3px rgba(105, 226, 125, 0.15);
+}
+
+.subscribe-form button {
+
+    width: 100%;
+
+    height: 54px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    /* BENGALTRAIL GREEN */
+    background: #69E27D;
+
+    color: #102018;
+
+    font-size: 17px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.subscribe-form button:hover {
+
+    background: #58D86E;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(105, 226, 125, 0.25);
+}
+
+
+/* ================================
+   BOTTOM FOOTER
+================================ */
+
+.footer-bottom {
+
+    max-width: 1400px;
+
+    margin: 70px auto 0;
+
+    padding-top: 25px;
+
+    border-top:
+        1px solid rgba(255, 255, 255, 0.12);
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+.footer-bottom p {
+
+    color: #8E9DA4;
+
+    font-size: 14px;
+}
+
+.footer-bottom-links {
+
+    display: flex;
+
+    gap: 25px;
+}
+
+.footer-bottom-links a {
+
+    color: #8E9DA4;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    transition: 0.3s;
+}
+
+.footer-bottom-links a:hover {
+
+    color: #69E27D;
+}
+
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 1000px) {
+
+    .footer-container {
+
+        grid-template-columns: 1fr 1fr;
+
+        gap: 50px;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .glass-footer {
+
+        padding: 55px 25px 25px;
+
+        border-radius: 35px 35px 0 0;
+    }
+
+
+    .footer-container {
+
+        grid-template-columns: 1fr;
+
+        gap: 45px;
+    }
+
+
+    .footer-brand p {
+
+        max-width: 100%;
+    }
+
+
+    .footer-bottom {
+
+        margin-top: 45px;
+
+        flex-direction: column;
+
+        gap: 15px;
+
+        text-align: center;
+    }
+
+
+    .footer-bottom-links {
+
+        flex-direction: column;
+
+        gap: 10px;
+    }
+}
+
+/* //////////////////////////EXPERIMENT////////////////////// */
+/* ==========================================
+   DYNAMIC TRIPS SECTION
+========================================== */
+
+.dynamic-trips-section {
+
+    margin-top: 80px;
+
+    padding:
+        20px 4rem 70px;
+
+}
+
+
+/* ==========================================
+   SECTION HEADER
+========================================== */
+
+.dynamic-trips-heading {
+
+    margin-bottom: 35px;
+
+}
+
+
+.dynamic-section-label {
+
+    display: inline-block;
+
+    padding:
+        6px 12px;
+
+    margin-bottom: 12px;
+
+    border-radius: 20px;
+
+    background:
+        rgba(105, 226, 125, 0.12);
+
+    border:
+        1px solid
+        rgba(105, 226, 125, 0.22);
+
+    color:
+        #69E27D;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+}
+
+
+.dynamic-trips-heading h2 {
+
+    margin: 0 0 10px;
+
+    color:
+        #F5F7F6;
+
+    font-size: 32px;
+
+}
+
+
+.dynamic-trips-heading p {
+
+    margin: 0;
+
+    color:
+        #AEBBC0;
+
+    font-size: 15px;
+
+}
+
+
+/* ==========================================
+   CARD CONTAINER
+========================================== */
+
+.dynamic-trips-container {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 25px;
+
+}
+
+
+/* ==========================================
+   DYNAMIC CARD
+========================================== */
+
+.dynamic-trip-card {
+
+    overflow: hidden;
+
+    background:
+        rgba(18, 30, 38, 0.78);
+
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.14);
+
+    border-radius:
+        18px;
+
+    box-shadow:
+        0 15px 40px
+        rgba(0, 0, 0, 0.20);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+
+}
+
+
+.dynamic-trip-card:hover {
+
+    transform:
+        translateY(-6px);
+
+    box-shadow:
+        0 20px 50px
+        rgba(0, 0, 0, 0.30);
+
+}
+
+
+/* ==========================================
+   IMAGE
+========================================== */
+
+.dynamic-trip-image {
+
+    width: 100%;
+
+    height: 210px;
+
+    overflow: hidden;
+
+}
+
+
+.dynamic-trip-image img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition:
+        transform 0.4s ease;
+
+}
+
+
+.dynamic-trip-card:hover
+.dynamic-trip-image img {
+
+    transform:
+        scale(1.06);
+
+}
+
+
+/* ==========================================
+   CONTENT
+========================================== */
+
+.dynamic-trip-content {
+
+    padding:
+        22px;
+
+}
+
+
+.dynamic-trip-category {
+
+    display: inline-block;
+
+    margin-bottom: 8px;
+
+    color:
+        #69E27D;
+
+    font-size:
+        13px;
+
+    font-weight:
+        600;
+
+}
+
+
+.dynamic-trip-content h3 {
+
+    margin:
+        0 0 8px;
+
+    color:
+        #F5F7F6;
+
+    font-size:
+        22px;
+
+}
+
+
+.dynamic-trip-route {
+
+    margin:
+        0 0 18px;
+
+    color:
+        #69E27D;
+
+    font-size:
+        14px;
+
+    font-weight:
+        500;
+
+}
+
+
+/* ==========================================
+   INFO
+========================================== */
+
+.dynamic-trip-info {
+
+    display:
+        flex;
+
+    flex-wrap:
+        wrap;
+
+    gap:
+        15px;
+
+    margin-bottom:
+        18px;
+
+}
+
+
+.dynamic-trip-info span {
+
+    color:
+        #D9E1DE;
+
+    font-size:
+        13px;
+
+}
+
+
+/* ==========================================
+   DESCRIPTION
+========================================== */
+
+.dynamic-trip-description {
+
+    min-height:
+        65px;
+
+    margin:
+        0 0 18px;
+
+    color:
+        #AEBBC0;
+
+    font-size:
+        14px;
+
+    line-height:
+        1.6;
+
+}
+
+
+/* ==========================================
+   TAGS
+========================================== */
+
+.dynamic-trip-tags {
+
+    display:
+        flex;
+
+    flex-wrap:
+        wrap;
+
+    gap:
+        8px;
+
+    margin-bottom:
+        20px;
+
+}
+
+
+.dynamic-trip-tags span {
+
+    padding:
+        6px 11px;
+
+    border-radius:
+        20px;
+
+    background:
+        rgba(105, 226, 125, 0.12);
+
+    border:
+        1px solid
+        rgba(105, 226, 125, 0.20);
+
+    color:
+        #CFEFD5;
+
+    font-size:
+        12px;
+
+}
+
+
+/* ==========================================
+   BUTTON
+========================================== */
+
+.dynamic-view-details {
+
+    width:
+        100%;
+
+    padding:
+        11px 18px;
+
+    border:
+        none;
+
+    border-radius:
+        25px;
+
+    background:
+        #69E27D;
+
+    color:
+        #102018;
+
+    font-size:
+        14px;
+
+    font-weight:
+        600;
+
+    cursor:
+        pointer;
+
+    transition:
+        0.3s ease;
+
+}
+
+
+.dynamic-view-details:hover {
+
+    background:
+        #58D86E;
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 8px 20px
+        rgba(105, 226, 125, 0.25);
+
+}
+
+
+/* ==========================================
+   LOADING / ERROR
+========================================== */
+
+.dynamic-trips-loading,
+.dynamic-trips-error,
+.dynamic-trips-empty {
+
+    grid-column:
+        1 / -1;
+
+    min-height:
+        180px;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    color:
+        #AEBBC0;
+
+}
+
+
+.dynamic-trips-loading i {
+
+    margin-bottom:
+        12px;
+
+    color:
+        #69E27D;
+
+    font-size:
+        25px;
+
+}
+
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 1000px) {
+
+    .dynamic-trips-container {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .dynamic-trips-section {
+
+        padding-left:
+            25px;
+
+        padding-right:
+            25px;
+
+    }
+
+
+    .dynamic-trips-container {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+}
+
+
+
+/*//////////////////////////////////////////// NAV SEARCH ////////////////////////////////////*/
+/* ==========================================
+   NAVBAR LAYOUT
+========================================== */
+
+.navbar {
+    display: flex;
+    align-items: center;
+}
+
+
+/* Logo stays on the left */
+
+.navbar .logo {
+    flex-shrink: 0;
+}
+
+
+/* Push everything else to the right */
+
+.navbar .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-left: auto;
+}
+
+
+/* ==========================================
+   SEARCH
+========================================== */
+
+.navbar-search {
+    order: 3;
+
+    width: 285px;
+    height: 44px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 5px 0 14px;
+
+    margin-left: 2px;
+    margin-right: 25PX;
+
+    box-sizing: border-box;
+
+    background: rgba(255, 255, 255, 0.055);
+
+    border: 1px solid rgba(255, 255, 255, 0.16);
+
+    border-radius: 25px;
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+
+/* Search icon */
+
+.navbar-search > i {
+    flex-shrink: 0;
+
+    margin-right: 10px;
+
+    color: #aebbc0;
+
+    font-size: 16px;
+}
+
+
+/* Input */
+
+.navbar-search input {
+    flex: 1;
+
+    min-width: 0;
+
+    height: 100%;
+
+    padding: 0;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    color: #ffffff;
+
+    font-size: 14px;
+}
+
+
+.navbar-search input::placeholder {
+    color: #9ca8ad;
+}
+
+
+/* Search button */
+
+.navbar-search button {
+    flex-shrink: 0;
+
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #69e27d;
+
+    color: #102018;
+
+    cursor: pointer;
+
+    transition: 0.25s ease;
+}
+
+
+.navbar-search button:hover {
+    transform: scale(1.06);
+}
+
+
+/* ==========================================
+   PROFILE
+========================================== */
+
+#tripProfileBtn {
+    order: 4;
+
+    flex-shrink: 0;
+
+    margin-left: 0;
+}

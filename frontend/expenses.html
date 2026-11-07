@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Traveler Expense Tracker | BengalTrail North Bengal Tourism</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
+  <link rel="stylesheet" href="mainpage.css" />
+  <style>
+    body {
+      background-color: #f8fafc;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text-dark);
+    }
+    .expense-wrapper {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1.5rem 4rem;
+    }
+    .expense-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    .expense-header h1 {
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: #0f172a;
+    }
+    .expense-header p {
+      color: var(--text-light);
+      margin-top: 0.5rem;
+      font-size: 1.05rem;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 2.5rem;
+    }
+    .stat-card {
+      background: #ffffff;
+      padding: 1.5rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+      border: 1px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      transition: transform 0.2s ease;
+    }
+    .stat-card:hover {
+      transform: translateY(-3px);
+    }
+    .stat-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.75rem;
+    }
+    .icon-total { background: #eff6ff; color: #2563eb; }
+    .icon-transport { background: #fef3c7; color: #d97706; }
+    .icon-stay { background: #dcfce7; color: #16a34a; }
+    .icon-food { background: #fee2e2; color: #dc2626; }
+    .stat-info h3 {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #64748b;
+    }
+    .stat-info p {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-top: 0.25rem;
+    }
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 2rem;
+    }
+    @media (max-width: 900px) {
+      .main-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .card-box {
+      background: #ffffff;
+      padding: 1.75rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+      border: 1px solid #e2e8f0;
+    }
+    .card-box h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: #1e293b;
+    }
+    .card-box h2 i {
+      color: var(--primary-color);
+    }
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #334155;
+      margin-bottom: 0.4rem;
+    }
+    .form-control {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border-radius: 0.6rem;
+      border: 1px solid #cbd5e1;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s ease;
+      font-family: inherit;
+    }
+    .form-control:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(40, 135, 255, 0.15);
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .btn-submit {
+      width: 100%;
+      padding: 0.85rem;
+      background: var(--primary-color);
+      color: #fff;
+      border: none;
+      border-radius: 0.6rem;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 1.25rem;
+      transition: background 0.2s ease;
+    }
+    .btn-submit:hover {
+      background: var(--primary-color-dark);
+    }
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.25rem;
+    }
+    .filter-btn {
+      padding: 0.45rem 0.9rem;
+      border-radius: 2rem;
+      border: 1px solid #cbd5e1;
+      background: #fff;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #475569;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all 0.2s ease;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--primary-color);
+      color: #fff;
+      border-color: var(--primary-color);
+    }
+    .expense-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      max-height: 520px;
+      overflow-y: auto;
+      padding-right: 0.25rem;
+    }
+    .expense-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.25rem;
+      border-radius: 0.75rem;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      transition: all 0.2s ease;
+    }
+    .expense-item:hover {
+      background: #fff;
+      border-color: #cbd5e1;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    }
+    .expense-left {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .cat-badge {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+    }
+    .cat-badge.Toto { background: #fef3c7; color: #b45309; }
+    .cat-badge.Bus { background: #e0e7ff; color: #4338ca; }
+    .cat-badge.Train { background: #dbeafe; color: #1d4ed8; }
+    .cat-badge.Homestay { background: #dcfce7; color: #15803d; }
+    .cat-badge.Food { background: #fee2e2; color: #b91c1c; }
+    .cat-badge.Jeep { background: #f3e8ff; color: #7e22ce; }
+    .item-title {
+      font-weight: 600;
+      color: #1e293b;
+      font-size: 0.98rem;
+    }
+    .item-meta {
+      font-size: 0.8rem;
+      color: #64748b;
+      margin-top: 0.2rem;
+      display: flex;
+      gap: 0.75rem;
+    }
+    .item-meta span {
+      display: flex;
+      align-items: center;
+      gap: 0.2rem;
+    }
+    .expense-right {
+      text-align: right;
+    }
+    .item-price {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #0f172a;
+    }
+    .btn-delete {
+      color: #ef4444;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-size: 1.1rem;
+      margin-top: 0.35rem;
+      opacity: 0.6;
+      transition: opacity 0.2s ease;
+    }
+    .btn-delete:hover {
+      opacity: 1;
+    }
+    .rate-card-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+    .rate-card-table th {
+      background: #f1f5f9;
+      padding: 0.75rem;
+      text-align: left;
+      font-weight: 600;
+      color: #475569;
+    }
+    .rate-card-table td {
+      padding: 0.75rem;
+      border-bottom: 1px solid #e2e8f0;
+      color: #334155;
+    }
+    .badge-pill {
+      display: inline-block;
+      padding: 0.25rem 0.6rem;
+      border-radius: 1rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .rate-section {
+      margin-top: 3rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <div class="nav__header">
+      <div class="nav__logo">
+        <a class="logo" href="/mainpage"><img src="assets/logo.png" alt="BengalTrail" /></a>
+      </div>
+      <div class="nav__menu__btn" id="menu-btn">
+        <i class="ri-menu-line"></i>
+      </div>
+    </div>
+    <ul class="nav__links" id="nav-links">
+      <li><a href="/mainpage">HOME</a></li>
+      <li><a href="/ai-planner">AI TRIP PLANNER</a></li>
+      <li><a href="/">TRIPS</a></li>
+      <li><a href="/expenses" style="color: var(--primary-color); font-weight: bold;">EXPENSES</a></li>
+      <li><a href="/community">COMMUNITY</a></li>
+      <li><a href="/profile" id="profileBtn">PROFILE</a></li>
+    </ul>
+    <div class="nav__btns">
+      <button class="btn" onclick="window.location.href='/'">EXPLORE TRIPS</button>
+    </div>
+  </nav>
+
+  <div class="expense-wrapper">
+    <div class="expense-header">
+      <h1>North Bengal Travel Expense Tracker</h1>
+      <p>Log and calculate all your expenses: Bus, Train, Toto, Food, Homestays & Sightseeing</p>
+    </div>
+
+    <!-- STATS OVERVIEW -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon icon-total"><i class="ri-wallet-3-line"></i></div>
+        <div class="stat-info">
+          <h3>Total Trip Cost</h3>
+          <p id="totalExpense">₹0</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon icon-transport"><i class="ri-e-bike-2-line"></i></div>
+        <div class="stat-info">
+          <h3>Transit (Bus/Train/Toto)</h3>
+          <p id="transportExpense">₹0</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon icon-stay"><i class="ri-home-heart-line"></i></div>
+        <div class="stat-info">
+          <h3>Homestays & Stays</h3>
+          <p id="stayExpense">₹0</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon icon-food"><i class="ri-restaurant-2-line"></i></div>
+        <div class="stat-info">
+          <h3>Food & Meals</h3>
+          <p id="foodExpense">₹0</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN GRID: FORM & EXPENSE LIST -->
+    <div class="main-grid">
+      <!-- FORM -->
+      <div class="card-box">
+        <h2><i class="ri-add-circle-line"></i> Add New Expense</h2>
+        <form id="expenseForm">
+          <div class="form-group">
+            <label>Destination / Area</label>
+            <input type="text" id="destination" class="form-control" placeholder="e.g. Darjeeling, Takdah, Siliguri" required value="Darjeeling" />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Expense Category</label>
+              <select id="subCategory" class="form-control" required onchange="handleCategoryChange()">
+                <option value="Toto">Toto (E-Rickshaw)</option>
+                <option value="Bus">Bus (NBSTC / Private)</option>
+                <option value="Train">Train / Toy Train</option>
+                <option value="Shared Jeep">Shared Jeep / Sumo</option>
+                <option value="Homestay">Homestay</option>
+                <option value="Hotel">Hotel / Resort</option>
+                <option value="Food">Food / Meals / Tea</option>
+                <option value="Sightseeing">Sightseeing / Safari</option>
+                <option value="Misc">Miscellaneous / Permit</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Amount (₹ INR)</label>
+              <input type="number" id="amount" class="form-control" placeholder="₹ Amount" required min="1" step="0.5" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Expense Title / Description</label>
+            <input type="text" id="itemTitle" class="form-control" placeholder="e.g. Toto from NJP Station to Siliguri Junction" required />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Origin Point</label>
+              <input type="text" id="originPoint" class="form-control" placeholder="e.g. NJP Station" />
+            </div>
+            <div class="form-group">
+              <label>Drop / End Point</label>
+              <input type="text" id="destinationPoint" class="form-control" placeholder="e.g. Siliguri Jeep Stand" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Date</label>
+              <input type="date" id="expenseDate" class="form-control" required />
+            </div>
+            <div class="form-group">
+              <label>Payment Method</label>
+              <select id="paymentMethod" class="form-control">
+                <option value="UPI / GPay / PhonePe">UPI / GPay / PhonePe</option>
+                <option value="Cash">Cash</option>
+                <option value="Card">Card</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Notes / Driver No / Meal Details (Optional)</label>
+            <input type="text" id="notes" class="form-control" placeholder="e.g. 2 passengers, included breakfast" />
+          </div>
+
+          <button type="submit" class="btn-submit">
+            <i class="ri-check-line"></i> Save Expense to Database
+          </button>
+        </form>
+      </div>
+
+      <!-- LIST & FILTERS -->
+      <div class="card-box">
+        <h2><i class="ri-file-list-3-line"></i> Logged Expenses</h2>
+        
+        <!-- Category Filters -->
+        <div class="filter-bar">
+          <button class="filter-btn active" onclick="filterExpenses('All')">All</button>
+          <button class="filter-btn" onclick="filterExpenses('Toto')"><i class="ri-e-bike-2-line"></i> Toto</button>
+          <button class="filter-btn" onclick="filterExpenses('Bus')"><i class="ri-bus-line"></i> Bus</button>
+          <button class="filter-btn" onclick="filterExpenses('Train')"><i class="ri-train-line"></i> Train</button>
+          <button class="filter-btn" onclick="filterExpenses('Shared Jeep')"><i class="ri-taxi-line"></i> Jeep</button>
+          <button class="filter-btn" onclick="filterExpenses('Homestay')"><i class="ri-home-4-line"></i> Homestay</button>
+          <button class="filter-btn" onclick="filterExpenses('Food')"><i class="ri-restaurant-line"></i> Food</button>
+        </div>
+
+        <div class="expense-list" id="expenseListContainer">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+    </div>
+
+    <!-- NORTH BENGAL BENCHMARK RATE CARD -->
+    <div class="rate-section card-box">
+      <h2><i class="ri-information-line"></i> North Bengal Standard Travel Rate Card (Reference Guide)</h2>
+      <p style="color: #64748b; font-size: 0.92rem; margin-bottom: 1rem;">
+        Standard expected costs across North Bengal so you never get overcharged.
+      </p>
+      <table class="rate-card-table">
+        <thead>
+          <tr>
+            <th>Service / Transit</th>
+            <th>Route / Location</th>
+            <th>Standard Fare (₹)</th>
+            <th>Type</th>
+            <th>Traveler Tip</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Toto (E-Rickshaw)</strong></td>
+            <td>NJP Station to Siliguri Town / Junction</td>
+            <td><strong>₹100 - ₹120</strong> (Reserve)</td>
+            <td><span class="badge-pill" style="background:#fef3c7; color:#b45309;">Toto</span></td>
+            <td>Shared Toto is ₹20-₹25 per person from main gate</td>
+          </tr>
+          <tr>
+            <td><strong>Toto (Local)</strong></td>
+            <td>Within Siliguri / Cooch Behar / Alipurduar town</td>
+            <td><strong>₹15 - ₹20</strong></td>
+            <td><span class="badge-pill" style="background:#fef3c7; color:#b45309;">Toto</span></td>
+            <td>Fixed shared hops across town junctions</td>
+          </tr>
+          <tr>
+            <td><strong>Shared Jeep (Sumo/Bolero)</strong></td>
+            <td>Siliguri Junction Jeep Stand to Darjeeling Mall</td>
+            <td><strong>₹300 - ₹350</strong></td>
+            <td><span class="badge-pill" style="background:#f3e8ff; color:#7e22ce;">Jeep</span></td>
+            <td>Full private reserved car is ₹2800 - ₹3500</td>
+          </tr>
+          <tr>
+            <td><strong>NBSTC Mountain Bus</strong></td>
+            <td>Siliguri (Tenzing Norgay) to Darjeeling / Kalimpong</td>
+            <td><strong>₹110 - ₹120</strong></td>
+            <td><span class="badge-pill" style="background:#e0e7ff; color:#4338ca;">Bus</span></td>
+            <td>Departs regular intervals from morning till 2 PM</td>
+          </tr>
+          <tr>
+            <td><strong>DHR Toy Train Steam Joyride</strong></td>
+            <td>Darjeeling Station to Ghum & Batasia Loop</td>
+            <td><strong>₹1500</strong></td>
+            <td><span class="badge-pill" style="background:#dbeafe; color:#1d4ed8;">Train</span></td>
+            <td>Diesel engine joyride is ~₹1000 per person</td>
+          </tr>
+          <tr>
+            <td><strong>Village Homestay</strong></td>
+            <td>Chatakpur / Takdah / Lamahatta / Sittong</td>
+            <td><strong>₹1200 - ₹1500</strong></td>
+            <td><span class="badge-pill" style="background:#dcfce7; color:#15803d;">Homestay</span></td>
+            <td>Includes 4 homemade organic meals (Breakfast, Lunch, Snacks, Dinner)</td>
+          </tr>
+          <tr>
+            <td><strong>Local Food & Momos</strong></td>
+            <td>Steamed Chicken/Veg Momos & Thukpa bowl</td>
+            <td><strong>₹80 - ₹120</strong></td>
+            <td><span class="badge-pill" style="background:#fee2e2; color:#b91c1c;">Food</span></td>
+            <td>Hot street & cafe dining across Mall Road & Chowrasta</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    // Initial sample expenses
+    const defaultExpenses = [
+      {
+        id: 1,
+        destination: "Siliguri",
+        subCategory: "Toto",
+        itemTitle: "Toto from NJP station gate to Siliguri Junction Jeep Stand",
+        amount: 120,
+        originPoint: "NJP Station",
+        destinationPoint: "Siliguri Junction",
+        expenseDate: "2026-11-01",
+        paymentMethod: "Cash",
+        notes: "2 passengers with bags"
+      },
+      {
+        id: 2,
+        destination: "Darjeeling",
+        subCategory: "Shared Jeep",
+        itemTitle: "Shared Bolero Jeep to Darjeeling Clubside",
+        amount: 600,
+        originPoint: "Siliguri Junction",
+        destinationPoint: "Darjeeling",
+        expenseDate: "2026-11-01",
+        paymentMethod: "Cash",
+        notes: "₹300 x 2 seats"
+      },
+      {
+        id: 3,
+        destination: "Darjeeling",
+        subCategory: "Food",
+        itemTitle: "Hot steamed Momos and First Flush Darjeeling Tea at Mall Road",
+        amount: 240,
+        originPoint: "Mall Road",
+        destinationPoint: "Mall Road",
+        expenseDate: "2026-11-01",
+        paymentMethod: "UPI / GPay / PhonePe",
+        notes: "Lunch"
+      },
+      {
+        id: 4,
+        destination: "Takdah",
+        subCategory: "Homestay",
+        itemTitle: "Takdah Heritage Homestay (Night 1) with Organic Meals",
+        amount: 2800,
+        originPoint: "Takdah",
+        destinationPoint: "Takdah",
+        expenseDate: "2026-11-01",
+        paymentMethod: "UPI / GPay / PhonePe",
+        notes: "Includes dinner and morning tea for 2"
+      },
+      {
+        id: 5,
+        destination: "Darjeeling",
+        subCategory: "Train",
+        itemTitle: "DHR Himalayan Toy Train Steam Joyride",
+        amount: 3000,
+        originPoint: "Darjeeling Station",
+        destinationPoint: "Ghum Station",
+        expenseDate: "2026-11-02",
+        paymentMethod: "Card",
+        notes: "Steam engine joyride tickets for 2"
+      },
+      {
+        id: 6,
+        destination: "Kurseong",
+        subCategory: "Bus",
+        itemTitle: "NBSTC Bus from Ghoom to Kurseong",
+        amount: 70,
+        originPoint: "Ghoom",
+        destinationPoint: "Kurseong",
+        expenseDate: "2026-11-02",
+        paymentMethod: "Cash",
+        notes: "₹35 x 2 tickets"
+      }
+    ];
+
+    let expenses = JSON.parse(localStorage.getItem('bengaltrail_expenses')) || defaultExpenses;
+    let activeFilter = 'All';
+
+    // Set today's date in form
+    document.getElementById('expenseDate').value = new Date().toISOString().split('T')[0];
+
+    function saveToLocalStorage() {
+      localStorage.setItem('bengaltrail_expenses', JSON.stringify(expenses));
+    }
+
+    function getCategoryIcon(subCat) {
+      switch (subCat) {
+        case 'Toto': return 'ri-e-bike-2-line';
+        case 'Bus': return 'ri-bus-line';
+        case 'Train': return 'ri-train-line';
+        case 'Shared Jeep': return 'ri-taxi-line';
+        case 'Homestay': return 'ri-home-4-line';
+        case 'Hotel': return 'ri-hotel-line';
+        case 'Food': return 'ri-restaurant-2-line';
+        case 'Sightseeing': return 'ri-compass-3-line';
+        default: return 'ri-money-dollar-circle-line';
+      }
+    }
+
+    function renderExpenses() {
+      const listContainer = document.getElementById('expenseListContainer');
+      const filtered = activeFilter === 'All' 
+        ? expenses 
+        : expenses.filter(e => e.subCategory.toLowerCase() === activeFilter.toLowerCase());
+
+      if (filtered.length === 0) {
+        listContainer.innerHTML = `
+          <div style="text-align: center; padding: 2rem; color: #94a3b8;">
+            <i class="ri-inbox-line" style="font-size: 2.5rem; display: block; margin-bottom: 0.5rem;"></i>
+            No expenses found for this category.
+          </div>
+        `;
+      } else {
+        listContainer.innerHTML = filtered.map(item => `
+          <div class="expense-item">
+            <div class="expense-left">
+              <div class="cat-badge ${item.subCategory.replace(' ', '')}">
+                <i class="${getCategoryIcon(item.subCategory)}"></i>
+              </div>
+              <div>
+                <div class="item-title">${item.itemTitle}</div>
+                <div class="item-meta">
+                  <span><i class="ri-map-pin-line"></i> ${item.destination}</span>
+                  <span><i class="ri-calendar-line"></i> ${item.expenseDate}</span>
+                  <span><i class="ri-bank-card-line"></i> ${item.paymentMethod}</span>
+                </div>
+              </div>
+            </div>
+            <div class="expense-right">
+              <div class="item-price">₹${parseFloat(item.amount).toLocaleString('en-IN')}</div>
+              <button class="btn-delete" onclick="deleteExpense(${item.id})" title="Delete"><i class="ri-delete-bin-line"></i></button>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      updateTotals();
+    }
+
+    function updateTotals() {
+      let total = 0;
+      let transport = 0;
+      let stay = 0;
+      let food = 0;
+
+      expenses.forEach(e => {
+        const val = parseFloat(e.amount) || 0;
+        total += val;
+        if (['Toto', 'Bus', 'Train', 'Shared Jeep'].includes(e.subCategory)) {
+          transport += val;
+        } else if (['Homestay', 'Hotel'].includes(e.subCategory)) {
+          stay += val;
+        } else if (e.subCategory === 'Food') {
+          food += val;
+        }
+      });
+
+      document.getElementById('totalExpense').innerText = `₹${total.toLocaleString('en-IN')}`;
+      document.getElementById('transportExpense').innerText = `₹${transport.toLocaleString('en-IN')}`;
+      document.getElementById('stayExpense').innerText = `₹${stay.toLocaleString('en-IN')}`;
+      document.getElementById('foodExpense').innerText = `₹${food.toLocaleString('en-IN')}`;
+    }
+
+    function filterExpenses(category) {
+      activeFilter = category;
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        if (btn.innerText.trim().includes(category) || (category === 'All' && btn.innerText.trim() === 'All')) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+      renderExpenses();
+    }
+
+    function deleteExpense(id) {
+      expenses = expenses.filter(e => e.id !== id);
+      saveToLocalStorage();
+      renderExpenses();
+    }
+
+    function handleCategoryChange() {
+      const subCat = document.getElementById('subCategory').value;
+      const titleInput = document.getElementById('itemTitle');
+      if (subCat === 'Toto' && !titleInput.value) {
+        titleInput.placeholder = "e.g. Toto from NJP Station to Siliguri Junction";
+      } else if (subCat === 'Bus' && !titleInput.value) {
+        titleInput.placeholder = "e.g. NBSTC bus ticket Siliguri to Darjeeling";
+      } else if (subCat === 'Train' && !titleInput.value) {
+        titleInput.placeholder = "e.g. DHR Toy train joyride tickets";
+      } else if (subCat === 'Homestay' && !titleInput.value) {
+        titleInput.placeholder = "e.g. Lamahatta Homestay 2 nights with meals";
+      }
+    }
+
+    document.getElementById('expenseForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const newExpense = {
+        id: Date.now(),
+        destination: document.getElementById('destination').value,
+        subCategory: document.getElementById('subCategory').value,
+        amount: parseFloat(document.getElementById('amount').value),
+        itemTitle: document.getElementById('itemTitle').value,
+        originPoint: document.getElementById('originPoint').value,
+        destinationPoint: document.getElementById('destinationPoint').value,
+        expenseDate: document.getElementById('expenseDate').value,
+        paymentMethod: document.getElementById('paymentMethod').value,
+        notes: document.getElementById('notes').value
+      };
+
+      expenses.unshift(newExpense);
+      saveToLocalStorage();
+      renderExpenses();
+
+      // Reset fields
+      document.getElementById('itemTitle').value = '';
+      document.getElementById('amount').value = '';
+      document.getElementById('notes').value = '';
+      document.getElementById('originPoint').value = '';
+      document.getElementById('destinationPoint').value = '';
+    });
+
+    // Initial render
+    renderExpenses();
+  </script>
+</body>
+</html>

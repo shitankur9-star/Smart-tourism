@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>My Profile | BengalTrail</title>
+
+    <!-- Remix Icons -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+        rel="stylesheet"
+    >
+
+    <!-- Profile CSS -->
+    <link
+        rel="stylesheet"
+        href="profile.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- ==========================================
+         PROFILE NAVBAR
+    =========================================== -->
+
+    <nav class="profile-navbar">
+
+        <!-- Logo -->
+
+        <div class="profile-logo">
+
+            <a href="mainpage.html">
+                BengalTrail
+            </a>
+
+        </div>
+        
+
+
+        <!-- Navigation -->
+
+        <div class="profile-nav-links">
+
+            <a href="mainpage.html">
+
+                <i class="ri-home-line"></i>
+
+                Home
+
+            </a>
+
+
+            <button
+                type="button"
+                id="logoutBtn"
+            >
+
+                <i class="ri-logout-box-r-line"></i>
+
+                Logout
+
+            </button>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- ==========================================
+         MAIN PROFILE CONTAINER
+    =========================================== -->
+
+    <main class="profile-container">
+
+
+        <!-- ======================================
+             PROFILE HEADER
+        ======================================= -->
+
+        <section class="profile-header">
+
+
+            <!-- Avatar -->
+
+            <div class="profile-avatar">
+
+                <img
+                    id="profileImage"
+                    src=""
+                    alt="Profile Photo"
+                >
+
+                <i
+                    class="ri-user-3-line"
+                    id="defaultAvatar"
+                ></i>
+
+                <label
+                    for="profileImageInput"
+                    class="avatar-upload"
+                    title="Change profile photo"
+                >
+
+                    <i class="ri-camera-line"></i>
+
+                </label>
+
+                <input
+                    type="file"
+                    id="profileImageInput"
+                    accept="image/jpeg,image/png,image/webp"
+                    hidden
+                >
+
+            </div>
+
+
+            <!-- User information -->
+
+            <div class="profile-title">
+
+                <p class="profile-label">
+                    MY PROFILE
+                </p>
+
+
+                <h1 id="profileName">
+                    Loading...
+                </h1>
+
+
+                <p id="profileEmail">
+                    Loading...
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ======================================
+             PERSONAL INFORMATION
+        ======================================= -->
+
+        <section class="profile-card">
+
+
+            <div class="card-heading">
+
+                <div>
+
+                    <span class="card-icon">
+
+                        <i class="ri-user-line"></i>
+
+                    </span>
+
+
+                    <div>
+
+                        <h2>
+                            Personal Information
+                        </h2>
+
+                        <p>
+                            Your BengalTrail account details
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Information -->
+
+            <div class="profile-info-grid">
+
+
+                <!-- Full Name -->
+
+                <div class="info-item">
+
+                    <span>
+                        Full Name
+                    </span>
+
+                    <strong id="fullName">
+                        Loading...
+                    </strong>
+
+                </div>
+
+
+
+                <!-- Email -->
+
+                <div class="info-item">
+
+                    <span>
+                        Email Address
+                    </span>
+
+                    <strong id="email">
+                        Loading...
+                    </strong>
+
+                </div>
+
+
+
+                <!-- User ID -->
+
+                <div class="info-item">
+
+                    <span>
+                        Account ID
+                    </span>
+
+                    <strong id="userId">
+                        Loading...
+                    </strong>
+
+                </div>
+
+
+
+                <!-- Member Since -->
+
+                <div class="info-item">
+
+                    <span>
+                        Member Since
+                    </span>
+
+                    <strong id="memberSince">
+                        Loading...
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ======================================
+             TRAVEL SECTION
+        ======================================= -->
+
+        <!-- <section class="profile-card">
+
+
+            <div class="card-heading">
+
+                <div>
+
+                    <span class="card-icon">
+
+                        <i class="ri-compass-3-line"></i>
+
+                    </span>
+
+
+                    <div>
+
+                        <h2>
+                            My Travel
+                        </h2>
+
+                        <p>
+                            Your BengalTrail travel activity
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="travel-grid"> -->
+
+
+                <!-- Trips -->
+
+                <!-- <div class="travel-stat">
+
+                    <i class="ri-map-pin-line"></i>
+
+                    <strong>
+                        0
+                    </strong>
+
+                    <span>
+                        Trips Planned
+                    </span>
+
+                </div> -->
+
+
+
+                <!-- Saved Places -->
+
+                <!-- <div class="travel-stat">
+
+                    <i class="ri-heart-3-line"></i>
+
+                    <strong>
+                        0
+                    </strong>
+
+                    <span>
+                        Saved Places
+                    </span>
+
+                </div> -->
+
+
+
+                <!-- Reviews -->
+
+                <!-- <div class="travel-stat">
+
+                    <i class="ri-star-line"></i>
+
+                    <strong>
+                        0
+                    </strong>
+
+                    <span>
+                        Reviews
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section> -->
+
+
+
+        <!-- ======================================
+             LOGOUT
+        ======================================= -->
+
+        <section class="logout-section">
+
+            <button
+                type="button"
+                class="logout-main-btn"
+                id="logoutBtnBottom"
+            >
+
+                <i class="ri-logout-box-r-line"></i>
+
+                Logout from BengalTrail
+
+            </button>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- ==========================================
+         PROFILE JAVASCRIPT
+    =========================================== -->
+
+    <script src="profile.js"></script>
+
+</body>
+
+</html>

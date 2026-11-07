@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>North Bengal Travel Community | BengalTrail</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
+  <link rel="stylesheet" href="mainpage.css" />
+  <style>
+    body {
+      background-color: #f8fafc;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text-dark);
+    }
+    .comm-wrapper {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1.5rem 5rem;
+    }
+    .comm-hero {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    .comm-hero h1 {
+      font-size: 2.6rem;
+      font-weight: 800;
+      color: #0f172a;
+    }
+    .comm-hero p {
+      color: var(--text-light);
+      margin-top: 0.5rem;
+      font-size: 1.1rem;
+      max-width: 720px;
+      margin-inline: auto;
+    }
+    .comm-actions {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .btn-create-post {
+      padding: 0.85rem 1.8rem;
+      background: var(--primary-color);
+      color: #fff;
+      border: none;
+      border-radius: 2rem;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 15px rgba(40, 135, 255, 0.3);
+    }
+    .btn-create-post:hover {
+      background: var(--primary-color-dark);
+      transform: translateY(-2px);
+    }
+    .btn-explore-hist {
+      padding: 0.85rem 1.8rem;
+      background: #ffffff;
+      color: #334155;
+      border: 1px solid #cbd5e1;
+      border-radius: 2rem;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s ease;
+    }
+    .btn-explore-hist:hover {
+      background: #f1f5f9;
+      border-color: #94a3b8;
+    }
+
+    /* TABS */
+    .comm-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      margin: 2.5rem 0 2rem;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      padding: 0.65rem 1.25rem;
+      border-radius: 2rem;
+      border: 1px solid transparent;
+      background: #fff;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #64748b;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+    }
+    .tab-btn.active, .tab-btn:hover {
+      background: var(--primary-color);
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(40, 135, 255, 0.25);
+    }
+
+    /* FEED GRID */
+    .feed-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 1.75rem;
+    }
+    @media (max-width: 640px) {
+      .feed-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .post-card {
+      background: #ffffff;
+      border-radius: 1.25rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+      border: 1px solid #e2e8f0;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .post-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+    .post-header {
+      padding: 1.25rem 1.25rem 0.75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+    .author-info {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .author-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #eff6ff;
+      color: var(--primary-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+    .author-name {
+      font-weight: 700;
+      color: #0f172a;
+      font-size: 0.98rem;
+    }
+    .author-tag {
+      font-size: 0.78rem;
+      color: #64748b;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .badge-author-type {
+      padding: 0.25rem 0.65rem;
+      border-radius: 1rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+    .badge-local {
+      background: #dcfce7;
+      color: #15803d;
+      border: 1px solid #bbf7d0;
+    }
+    .badge-tourist {
+      background: #eff6ff;
+      color: #2563eb;
+      border: 1px solid #bfdbfe;
+    }
+    .post-body {
+      padding: 0 1.25rem 1rem;
+      flex: 1;
+    }
+    .post-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin: 0.5rem 0 0.4rem;
+      line-height: 1.4;
+    }
+    .post-dest-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      background: #f1f5f9;
+      color: #475569;
+      font-size: 0.78rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 0.4rem;
+      margin-bottom: 0.75rem;
+      font-weight: 600;
+    }
+    .post-content {
+      color: #475569;
+      font-size: 0.92rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+      white-space: pre-line;
+    }
+
+    /* WEATHER & EXPENSE WIDGETS IN POSTS */
+    .post-meta-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 0.75rem;
+      padding: 0.75rem 1rem;
+      margin-bottom: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+    }
+    .meta-row {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .meta-row i {
+      font-size: 1.1rem;
+    }
+    .meta-weather { color: #0284c7; }
+    .meta-expense { color: #16a34a; font-weight: 600; }
+
+    .post-footer {
+      padding: 0.85rem 1.25rem;
+      border-top: 1px solid #f1f5f9;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #ffffff;
+    }
+    .like-btn {
+      background: transparent;
+      border: 1px solid #e2e8f0;
+      padding: 0.4rem 0.8rem;
+      border-radius: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.88rem;
+      color: #475569;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+    .like-btn:hover {
+      background: #fee2e2;
+      color: #dc2626;
+      border-color: #fecaca;
+    }
+    .comment-toggle-btn {
+      background: transparent;
+      border: none;
+      color: #64748b;
+      cursor: pointer;
+      font-size: 0.88rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .comment-toggle-btn:hover {
+      color: var(--primary-color);
+    }
+
+    /* COMMENTS SECTION */
+    .comments-wrapper {
+      background: #f8fafc;
+      border-top: 1px solid #e2e8f0;
+      padding: 1rem 1.25rem;
+      display: none;
+    }
+    .comments-wrapper.open {
+      display: block;
+    }
+    .comment-item {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid #edf2f7;
+      font-size: 0.85rem;
+    }
+    .comment-item:last-child {
+      border-bottom: none;
+    }
+    .comment-author {
+      font-weight: 700;
+      color: #1e293b;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .comment-content {
+      color: #475569;
+      margin-top: 0.2rem;
+    }
+    .comment-input-row {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+    .comment-input {
+      flex: 1;
+      padding: 0.55rem 0.85rem;
+      border-radius: 0.5rem;
+      border: 1px solid #cbd5e1;
+      font-size: 0.85rem;
+      outline: none;
+    }
+    .btn-send-comment {
+      background: var(--primary-color);
+      color: #fff;
+      border: none;
+      padding: 0 0.85rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    /* PLACES HISTORY & WEATHER EXPLORER */
+    .history-section {
+      display: none;
+    }
+    .history-section.active {
+      display: block;
+    }
+    .history-search-bar {
+      max-width: 500px;
+      margin: 0 auto 2.5rem;
+      position: relative;
+    }
+    .history-search-input {
+      width: 100%;
+      padding: 0.85rem 1.25rem 0.85rem 2.75rem;
+      border-radius: 2rem;
+      border: 1px solid #cbd5e1;
+      font-size: 1rem;
+      outline: none;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    }
+    .history-search-bar i {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #94a3b8;
+      font-size: 1.2rem;
+    }
+    .history-card {
+      background: #ffffff;
+      border-radius: 1.25rem;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+      margin-bottom: 2rem;
+      overflow: hidden;
+    }
+    .history-card-header {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      color: #fff;
+      padding: 1.75rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .history-card-header h2 {
+      font-size: 1.8rem;
+      font-weight: 800;
+    }
+    .history-card-header p {
+      color: #94a3b8;
+      font-size: 0.95rem;
+      margin-top: 0.25rem;
+    }
+    .weather-pill {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(8px);
+      padding: 0.6rem 1.2rem;
+      border-radius: 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.92rem;
+    }
+    .history-card-body {
+      padding: 2rem;
+    }
+    .history-block {
+      margin-bottom: 1.75rem;
+    }
+    .history-block h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .history-block h3 i {
+      color: var(--primary-color);
+    }
+    .history-block p {
+      color: #475569;
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+    .meta-highlight-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+      background: #f8fafc;
+      padding: 1.25rem;
+      border-radius: 0.85rem;
+      border: 1px solid #e2e8f0;
+    }
+    .highlight-item h4 {
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      color: #64748b;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.35rem;
+    }
+    .highlight-item p {
+      color: #1e293b;
+      font-weight: 600;
+      font-size: 0.92rem;
+    }
+
+    /* MODAL */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+    .modal-overlay.open {
+      display: flex;
+    }
+    .modal-box {
+      background: #fff;
+      border-radius: 1.25rem;
+      max-width: 650px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 2rem;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+    .modal-header h2 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #0f172a;
+    }
+    .modal-close-btn {
+      background: transparent;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #64748b;
+    }
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #334155;
+      margin-bottom: 0.4rem;
+    }
+    .form-control {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border-radius: 0.6rem;
+      border: 1px solid #cbd5e1;
+      font-size: 0.95rem;
+      outline: none;
+      font-family: inherit;
+      box-sizing: border-box;
+    }
+    .form-control:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(40, 135, 255, 0.15);
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .role-selector {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+    .role-option {
+      border: 2px solid #e2e8f0;
+      padding: 0.85rem;
+      border-radius: 0.75rem;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s ease;
+    }
+    .role-option.selected {
+      border-color: var(--primary-color);
+      background: #eff6ff;
+    }
+    .role-option i {
+      font-size: 1.4rem;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+    .role-option.local.selected i { color: #16a34a; }
+    .role-option.tourist.selected i { color: #2563eb; }
+    .role-option h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #0f172a;
+    }
+    .role-option p {
+      font-size: 0.75rem;
+      color: #64748b;
+      margin-top: 0.2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <div class="nav__header">
+      <div class="nav__logo">
+        <a class="logo" href="/mainpage"><img src="assets/logo.png" alt="BengalTrail" /></a>
+      </div>
+      <div class="nav__menu__btn" id="menu-btn">
+        <i class="ri-menu-line"></i>
+      </div>
+    </div>
+    <ul class="nav__links" id="nav-links">
+      <li><a href="/mainpage">HOME</a></li>
+      <li><a href="/ai-planner">AI TRIP PLANNER</a></li>
+      <li><a href="/">TRIPS</a></li>
+      <li><a href="/expenses">EXPENSES</a></li>
+      <li><a href="/community" style="color: var(--primary-color); font-weight: bold;">COMMUNITY</a></li>
+      <li><a href="/profile" id="profileBtn">PROFILE</a></li>
+    </ul>
+    <div class="nav__btns">
+      <button class="btn" onclick="openPostModal()">+ SHARE POST</button>
+    </div>
+  </nav>
+
+  <div class="comm-wrapper">
+    <!-- HERO -->
+    <div class="comm-hero">
+      <h1>North Bengal Travel & Heritage Community</h1>
+      <p>
+        Where tourists share honest reviews and real expense breakdowns, and local residents share hidden gems, secret spots, and authentic travel advice.
+      </p>
+      <div class="comm-actions">
+        <button class="btn-create-post" onclick="openPostModal()">
+          <i class="ri-edit-line"></i> Share Review / Suggest a Place
+        </button>
+        <button class="btn-explore-hist" onclick="switchTab('history')">
+          <i class="ri-book-open-line"></i> Explore Places History & Weather
+        </button>
+      </div>
+    </div>
+
+    <!-- TABS -->
+    <div class="comm-tabs">
+      <button class="tab-btn active" id="tab-all" onclick="filterPosts('All')">
+        <i class="ri-apps-2-line"></i> All Community Posts
+      </button>
+      <button class="tab-btn" id="tab-locals" onclick="filterPosts('Local Resident')">
+        <i class="ri-home-heart-line"></i> Local People's Suggestions & Gems
+      </button>
+      <button class="tab-btn" id="tab-tourists" onclick="filterPosts('Tourist')">
+        <i class="ri-compass-3-line"></i> Tourist Reviews & Real Costs
+      </button>
+      <button class="tab-btn" id="tab-history" onclick="switchTab('history')">
+        <i class="ri-government-line"></i> North Bengal Places History & Weather Guide
+      </button>
+    </div>
+
+    <!-- POSTS FEED CONTAINER -->
+    <div id="postsFeedContainer" class="feed-grid">
+      <!-- Dynamically Populated -->
+    </div>
+
+    <!-- PLACES HISTORY & WEATHER SECTION -->
+    <div id="historySection" class="history-section">
+      <div class="history-search-bar">
+        <i class="ri-search-line"></i>
+        <input 
+          type="text" 
+          id="historySearchInput" 
+          class="history-search-input" 
+          placeholder="Search destination history (e.g. Darjeeling, Cooch Behar, Buxa)..." 
+          onkeyup="searchPlaceHistories()"
+        />
+      </div>
+
+      <div id="placeHistoriesContainer">
+        <!-- Dynamically Populated with rich histories -->
+      </div>
+    </div>
+  </div>
+
+  <!-- SHARE POST MODAL -->
+  <div class="modal-overlay" id="postModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h2>Share with BengalTrail Community</h2>
+        <button class="modal-close-btn" onclick="closePostModal()"><i class="ri-close-line"></i></button>
+      </div>
+
+      <form id="communityPostForm">
+        <!-- ROLE SELECTOR -->
+        <label style="font-size:0.88rem; font-weight:700; margin-bottom:0.5rem; display:block;">Who are you?</label>
+        <div class="role-selector">
+          <div class="role-option local selected" id="optLocal" onclick="selectRole('Local Resident')">
+            <i class="ri-home-heart-line"></i>
+            <h4>Local Resident / Guide</h4>
+            <p>Suggest hidden gems & local tips</p>
+          </div>
+          <div class="role-option tourist" id="optTourist" onclick="selectRole('Tourist')">
+            <i class="ri-compass-3-line"></i>
+            <h4>Tourist / Traveler</h4>
+            <p>Share trip review & expenses spent</p>
+          </div>
+        </div>
+        <input type="hidden" id="authorType" value="Local Resident" />
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" id="authorName" class="form-control" placeholder="e.g. Passang Tamang" required />
+          </div>
+          <div class="form-group">
+            <label>Your City / Tag</label>
+            <input type="text" id="authorLocation" class="form-control" placeholder="e.g. Takdah Tea Village Resident" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Destination / Tourist Place</label>
+            <select id="destinationName" class="form-control" required>
+              <option value="Darjeeling">Darjeeling</option>
+              <option value="Kalimpong">Kalimpong</option>
+              <option value="Kurseong">Kurseong</option>
+              <option value="Cooch Behar">Cooch Behar</option>
+              <option value="Buxa">Buxa Fort & Jayanti</option>
+              <option value="Takdah">Takdah & Lamahatta</option>
+              <option value="Mirik">Mirik</option>
+              <option value="Chatakpur">Chatakpur</option>
+              <option value="Jaldapara">Jaldapara & Dooars</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Post Category</label>
+            <select id="postType" class="form-control">
+              <option value="Local Suggestion">Local Place Suggestion</option>
+              <option value="Hidden Gem">Hidden Gem / Offbeat Spot</option>
+              <option value="Tourist Review">Tourist Review</option>
+              <option value="Budget Tip">Expense & Budget Tip</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Post Title</label>
+          <input type="text" id="postTitle" class="form-control" placeholder="e.g. Secret Waterfall & Colonial Tea Trail in Takdah" required />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Place Weather Note</label>
+            <input type="text" id="weatherNote" class="form-control" placeholder="e.g. Misty mornings, 14°C, carry windcheater" />
+          </div>
+          <div class="form-group">
+            <label>Total Expense (₹ INR)</label>
+            <input type="number" id="totalExpense" class="form-control" placeholder="e.g. 1450" min="0" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Expense Breakdown (Toto, Bus, Homestay, Food)</label>
+          <input type="text" id="expenseBreakdown" class="form-control" placeholder="e.g. Toto: ₹40 | Bus: ₹120 | Homestay: ₹1300 | Food: ₹150" />
+        </div>
+
+        <div class="form-group">
+          <label>Your Review, Recommendation & Story</label>
+          <textarea id="postContent" class="form-control" rows="4" placeholder="Tell travelers about the place, local history, how to reach, and practical advice..." required></textarea>
+        </div>
+
+        <button type="submit" class="btn-create-post" style="width: 100%; justify-content: center; border-radius: 0.6rem;">
+          <i class="ri-send-plane-fill"></i> Publish to Community
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const API_BASE = "http://127.0.0.1:8000";
+    let allPosts = [];
+    let placeHistories = [];
+    let currentFilter = 'All';
+
+    // Role selection
+    function selectRole(role) {
+      document.getElementById('authorType').value = role;
+      if (role === 'Local Resident') {
+        document.getElementById('optLocal').classList.add('selected');
+        document.getElementById('optTourist').classList.remove('selected');
+        document.getElementById('postType').value = "Local Suggestion";
+      } else {
+        document.getElementById('optTourist').classList.add('selected');
+        document.getElementById('optLocal').classList.remove('selected');
+        document.getElementById('postType').value = "Tourist Review";
+      }
+    }
+
+    function openPostModal() {
+      document.getElementById('postModal').classList.add('open');
+    }
+    function closePostModal() {
+      document.getElementById('postModal').classList.remove('open');
+    }
+
+    // Switch between Posts and Place History Tabs
+    function switchTab(tab) {
+      const feed = document.getElementById('postsFeedContainer');
+      const hist = document.getElementById('historySection');
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+
+      if (tab === 'history') {
+        feed.style.display = 'none';
+        hist.classList.add('active');
+        document.getElementById('tab-history').classList.add('active');
+        loadPlaceHistories();
+      } else {
+        feed.style.display = 'grid';
+        hist.classList.remove('active');
+      }
+    }
+
+    // Filter Posts
+    function filterPosts(type) {
+      currentFilter = type;
+      switchTab('posts');
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      if (type === 'All') document.getElementById('tab-all').classList.add('active');
+      if (type === 'Local Resident') document.getElementById('tab-locals').classList.add('active');
+      if (type === 'Tourist') document.getElementById('tab-tourists').classList.add('active');
+
+      renderPosts();
+    }
+
+    // Fetch and render community posts
+    async function loadCommunityPosts() {
+      try {
+        const res = await fetch(`${API_BASE}/api/community/posts`);
+        if (res.ok) {
+          allPosts = await res.json();
+          renderPosts();
+        }
+      } catch (e) {
+        console.warn("Backend not reached, using fallback sample posts");
+        // Fallback demo posts if offline
+        renderPosts();
+      }
+    }
+
+    function renderPosts() {
+      const container = document.getElementById('postsFeedContainer');
+      const filtered = currentFilter === 'All' 
+        ? allPosts 
+        : allPosts.filter(p => p.author_type.toLowerCase() === currentFilter.toLowerCase());
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div style="grid-column: 1/-1; text-align: center; padding: 3rem; color: #94a3b8;">
+            <i class="ri-chat-smile-2-line" style="font-size: 3rem; display: block; margin-bottom: 0.5rem;"></i>
+            No community posts found for this filter. Be the first to share!
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = filtered.map(p => {
+        const isLocal = p.author_type === 'Local Resident';
+        return `
+          <div class="post-card">
+            <div class="post-header">
+              <div class="author-info">
+                <div class="author-avatar" style="${isLocal ? 'background:#dcfce7; color:#15803d;' : ''}">
+                  <i class="${isLocal ? 'ri-home-heart-line' : 'ri-user-smile-line'}"></i>
+                </div>
+                <div>
+                  <div class="author-name">${p.author_name}</div>
+                  <div class="author-tag">
+                    <i class="ri-map-pin-line"></i> ${p.author_location || p.destination_name}
+                  </div>
+                </div>
+              </div>
+              <span class="badge-author-type ${isLocal ? 'badge-local' : 'badge-tourist'}">
+                ${isLocal ? '🏡 Local Resident' : '🎒 Tourist'}
+              </span>
+            </div>
+
+            <div class="post-body">
+              <span class="post-dest-tag"><i class="ri-compass-line"></i> ${p.destination_name} • ${p.post_type}</span>
+              <h3 class="post-title">${p.title}</h3>
+              <p class="post-content">${p.content}</p>
+
+              <!-- WEATHER & EXPENSE BREAKDOWN -->
+              <div class="post-meta-box">
+                ${p.weather_note ? `
+                  <div class="meta-row meta-weather">
+                    <i class="ri-sun-cloudy-line"></i>
+                    <span><strong>Weather:</strong> ${p.weather_note}</span>
+                  </div>
+                ` : ''}
+                ${p.expense_breakdown || p.total_expense > 0 ? `
+                  <div class="meta-row meta-expense">
+                    <i class="ri-wallet-line"></i>
+                    <span><strong>Expenses:</strong> ₹${p.total_expense.toLocaleString('en-IN')} ${p.expense_breakdown ? `(${p.expense_breakdown})` : ''}</span>
+                  </div>
+                ` : ''}
+              </div>
+            </div>
+
+            <div class="post-footer">
+              <button class="like-btn" onclick="likePost(${p.id})">
+                <i class="ri-heart-3-line"></i> <span id="like-count-${p.id}">${p.likes_count || 0}</span>
+              </button>
+              <button class="comment-toggle-btn" onclick="toggleComments(${p.id})">
+                <i class="ri-chat-3-line"></i> ${(p.comments && p.comments.length) || 0} Comments
+              </button>
+            </div>
+
+            <!-- COMMENTS CONTAINER -->
+            <div class="comments-wrapper" id="comments-${p.id}">
+              <div id="comment-list-${p.id}">
+                ${(p.comments || []).map(c => `
+                  <div class="comment-item">
+                    <div class="comment-author">
+                      <span>${c.author_name}</span>
+                      <small style="font-weight:400; color:#64748b;">(${c.author_type})</small>
+                    </div>
+                    <div class="comment-content">${c.content}</div>
+                  </div>
+                `).join('')}
+              </div>
+
+              <div class="comment-input-row">
+                <input type="text" id="input-comment-${p.id}" class="comment-input" placeholder="Write a reply or question..." />
+                <button class="btn-send-comment" onclick="postComment(${p.id})">Reply</button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Like post
+    async function likePost(id) {
+      try {
+        const res = await fetch(`${API_BASE}/api/community/posts/${id}/like`, { method: 'POST' });
+        if (res.ok) {
+          const data = await res.json();
+          const span = document.getElementById(`like-count-${id}`);
+          if (span) span.innerText = data.likes_count;
+        }
+      } catch (e) {
+        console.error("Like failed", e);
+      }
+    }
+
+    // Toggle comments
+    function toggleComments(id) {
+      const box = document.getElementById(`comments-${id}`);
+      if (box) {
+        box.classList.toggle('open');
+      }
+    }
+
+    // Add comment
+    async function postComment(postId) {
+      const input = document.getElementById(`input-comment-${postId}`);
+      const text = input.value.trim();
+      if (!text) return;
+
+      try {
+        const res = await fetch(`${API_BASE}/api/community/posts/${postId}/comments`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            author_name: "Community Traveler",
+            author_type: "Tourist",
+            content: text
+          })
+        });
+
+        if (res.ok) {
+          const newComment = await res.json();
+          const list = document.getElementById(`comment-list-${postId}`);
+          list.innerHTML += `
+            <div class="comment-item">
+              <div class="comment-author">
+                <span>${newComment.author_name}</span>
+                <small style="font-weight:400; color:#64748b;">(${newComment.author_type})</small>
+              </div>
+              <div class="comment-content">${newComment.content}</div>
+            </div>
+          `;
+          input.value = '';
+        }
+      } catch (e) {
+        console.error("Comment failed", e);
+      }
+    }
+
+    // Form submission
+    document.getElementById('communityPostForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const payload = {
+        author_name: document.getElementById('authorName').value,
+        author_type: document.getElementById('authorType').value,
+        author_location: document.getElementById('authorLocation').value,
+        destination_name: document.getElementById('destinationName').value,
+        post_type: document.getElementById('postType').value,
+        title: document.getElementById('postTitle').value,
+        weather_note: document.getElementById('weatherNote').value,
+        total_expense: parseFloat(document.getElementById('totalExpense').value) || 0.0,
+        expense_breakdown: document.getElementById('expenseBreakdown').value,
+        content: document.getElementById('postContent').value,
+        rating: 5.0
+      };
+
+      try {
+        const res = await fetch(`${API_BASE}/api/community/posts`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        if (res.ok) {
+          closePostModal();
+          await loadCommunityPosts();
+        }
+      } catch (err) {
+        console.error("Post creation error", err);
+      }
+    });
+
+    // LOAD PLACE HISTORIES & WEATHER
+    async function loadPlaceHistories() {
+      try {
+        const res = await fetch(`${API_BASE}/api/places/history`);
+        if (res.ok) {
+          placeHistories = await res.json();
+          renderPlaceHistories(placeHistories);
+        }
+      } catch (e) {
+        console.error("Failed to load place histories", e);
+      }
+    }
+
+    function renderPlaceHistories(data) {
+      const container = document.getElementById('placeHistoriesContainer');
+      container.innerHTML = data.map(h => `
+        <div class="history-card">
+          <div class="history-card-header">
+            <div>
+              <h2>${h.destination_name}</h2>
+              <p>${h.tagline || ''}</p>
+            </div>
+            <div class="weather-pill">
+              <i class="ri-temp-hot-line"></i>
+              <div>
+                <strong>${h.current_weather || 'Pleasant'}</strong>
+                <div style="font-size:0.75rem; color:#e2e8f0;">${h.temperature_range || ''}</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="history-card-body">
+            ${h.name_etymology ? `
+              <div class="history-block">
+                <h3><i class="ri-translate-2"></i> Origin & Meaning of Name</h3>
+                <p><em>${h.name_etymology}</em></p>
+              </div>
+            ` : ''}
+
+            <div class="history-block">
+              <h3><i class="ri-hourglass-2-line"></i> Complete History & Heritage</h3>
+              <p>${h.history_full}</p>
+            </div>
+
+            ${h.colonial_era ? `
+              <div class="history-block">
+                <h3><i class="ri-building-line"></i> Colonial Heritage & Architecture</h3>
+                <p>${h.colonial_era}</p>
+              </div>
+            ` : ''}
+
+            ${h.historical_landmarks ? `
+              <div class="history-block">
+                <h3><i class="ri-monument-line"></i> Historical Landmarks to Visit</h3>
+                <p>${h.historical_landmarks}</p>
+              </div>
+            ` : ''}
+
+            <!-- HIGHLIGHTS & LOCAL TRANSPORT -->
+            <div class="meta-highlight-grid">
+              <div class="highlight-item">
+                <h4>Altitude</h4>
+                <p>${h.altitude || 'Mountain elevation'}</p>
+              </div>
+              <div class="highlight-item">
+                <h4>Best Season to Visit</h4>
+                <p>${h.best_season_to_visit || 'Oct - May'}</p>
+              </div>
+              <div class="highlight-item" style="grid-column: 1 / -1;">
+                <h4>Local Transit & Expected Fares</h4>
+                <p>${h.local_transport_guide || 'Shared Jeeps & Toto available locally'}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function searchPlaceHistories() {
+      const term = document.getElementById('historySearchInput').value.toLowerCase();
+      const filtered = placeHistories.filter(h => 
+        h.destination_name.toLowerCase().includes(term) ||
+        (h.district && h.district.toLowerCase().includes(term)) ||
+        (h.history_full && h.history_full.toLowerCase().includes(term))
+      );
+      renderPlaceHistories(filtered);
+    }
+
+    // Initialize
+    loadCommunityPosts();
+  </script>
+</body>
+</html>

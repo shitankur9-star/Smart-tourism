@@ -1,0 +1,1202 @@
+/* =========================================================
+   BENGALTRAIL PROFILE
+   DARK GREEN GLASSMORPHISM
+========================================================= */
+
+
+/* =========================================================
+   ROOT VARIABLES
+========================================================= */
+
+:root {
+
+    /* Primary BengalTrail Green */
+    --primary: #67e878;
+    --primary-dark: #42d35c;
+    --primary-light: #8af293;
+
+    /* Background */
+    --bg-main: #0a1115;
+    --bg-secondary: #0f191e;
+    --bg-tertiary: #142127;
+
+    /* Text */
+    --text-primary: #f2f6f4;
+    --text-secondary: #a9b5b2;
+    --text-muted: #778580;
+
+    /* Glass */
+    --glass-bg: rgba(18, 29, 34, 0.72);
+    --glass-bg-light: rgba(25, 38, 43, 0.62);
+
+    --glass-border:
+        rgba(255, 255, 255, 0.09);
+
+    --glass-border-green:
+        rgba(103, 232, 120, 0.20);
+
+    /* Green transparent */
+    --green-soft:
+        rgba(103, 232, 120, 0.08);
+
+    --green-medium:
+        rgba(103, 232, 120, 0.14);
+
+    /* Shadows */
+    --glass-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.30);
+
+    --soft-shadow:
+        0 12px 35px rgba(0, 0, 0, 0.22);
+
+    --green-glow:
+        0 0 30px rgba(103, 232, 120, 0.12);
+
+    /* Radius */
+    --radius-lg: 28px;
+    --radius-md: 20px;
+    --radius-sm: 14px;
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+
+    min-height: 100vh;
+
+    font-family:
+        "DM Sans",
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    color: var(--text-primary);
+
+    background:
+
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(103, 232, 120, 0.08),
+            transparent 28%
+        ),
+
+        radial-gradient(
+            circle at 90% 85%,
+            rgba(103, 232, 120, 0.055),
+            transparent 30%
+        ),
+
+        linear-gradient(
+            135deg,
+            #080f13 0%,
+            #0c1519 45%,
+            #101c21 100%
+        );
+
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   BACKGROUND DECORATIVE GLOW
+========================================================= */
+
+body::before {
+
+    content: "";
+
+    position: fixed;
+
+    width: 450px;
+    height: 450px;
+
+    top: -180px;
+    right: -120px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(103, 232, 120, 0.09);
+
+    filter: blur(100px);
+
+    pointer-events: none;
+
+    z-index: -2;
+}
+
+
+body::after {
+
+    content: "";
+
+    position: fixed;
+
+    width: 400px;
+    height: 400px;
+
+    bottom: -180px;
+    left: -120px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(103, 232, 120, 0.055);
+
+    filter: blur(100px);
+
+    pointer-events: none;
+
+    z-index: -2;
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.profile-navbar {
+
+    position: sticky;
+
+    top: 18px;
+
+    z-index: 100;
+
+    width: min(
+        1200px,
+        calc(100% - 40px)
+    );
+
+    margin: 18px auto 0;
+
+    padding: 14px 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    background:
+        rgba(15, 25, 30, 0.78);
+
+    backdrop-filter: blur(24px);
+
+    -webkit-backdrop-filter: blur(24px);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.08);
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 18px 50px
+        rgba(0, 0, 0, 0.35);
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.profile-logo a {
+
+    text-decoration: none;
+
+    font-size: 24px;
+
+    font-weight: 800;
+
+    letter-spacing: -0.6px;
+
+    color: var(--primary);
+
+    text-shadow:
+        0 0 20px
+        rgba(103, 232, 120, 0.15);
+
+    transition: 0.25s ease;
+}
+
+
+.profile-logo a:hover {
+
+    color: var(--primary-light);
+
+    text-shadow:
+        0 0 25px
+        rgba(103, 232, 120, 0.25);
+}
+
+
+/* =========================================================
+   NAV LINKS
+========================================================= */
+
+.profile-nav-links {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+.profile-nav-links a,
+.profile-nav-links button {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 10px 15px;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.06);
+
+    border-radius: 12px;
+
+    background:
+        rgba(255, 255, 255, 0.045);
+
+    color: #d5ddda;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+.profile-nav-links a:hover {
+
+    background:
+        rgba(103, 232, 120, 0.09);
+
+    border-color:
+        rgba(103, 232, 120, 0.18);
+
+    color: var(--primary);
+
+    transform: translateY(-1px);
+}
+
+
+.profile-nav-links button {
+
+    color: #ff7770;
+}
+
+
+.profile-nav-links button:hover {
+
+    background:
+        rgba(255, 100, 90, 0.08);
+
+    border-color:
+        rgba(255, 100, 90, 0.16);
+
+    color: #ff8a84;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
+
+.profile-container {
+
+    width: min(
+        1050px,
+        calc(100% - 40px)
+    );
+
+    margin: 55px auto 80px;
+}
+
+
+/* =========================================================
+   PROFILE HERO
+========================================================= */
+
+.profile-header {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 28px;
+
+    padding: 38px;
+
+    margin-bottom: 25px;
+
+    overflow: hidden;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            rgba(26, 40, 45, 0.78),
+            rgba(13, 22, 26, 0.68)
+        );
+
+    backdrop-filter: blur(28px);
+
+    -webkit-backdrop-filter: blur(28px);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.09);
+
+    border-radius: var(--radius-lg);
+
+    box-shadow:
+        var(--glass-shadow);
+}
+
+
+/* Green glow inside hero */
+
+.profile-header::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 280px;
+    height: 280px;
+
+    top: -150px;
+    right: -80px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(103, 232, 120, 0.08);
+
+    filter: blur(40px);
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   PROFILE AVATAR
+========================================================= */
+
+.profile-avatar {
+
+    position: relative;
+
+    z-index: 2;
+
+    width: 105px;
+    height: 105px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #42d35c,
+            #67e878
+        );
+
+    color: #07100a;
+
+    font-size: 42px;
+
+    border:
+        5px solid
+        rgba(255, 255, 255, 0.12);
+
+    box-shadow:
+
+        0 15px 40px
+        rgba(103, 232, 120, 0.18),
+
+        0 0 35px
+        rgba(103, 232, 120, 0.08);
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   PROFILE IMAGE
+========================================================= */
+
+.profile-avatar img {
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    display: none;
+}
+
+
+/* =========================================================
+   CAMERA BUTTON
+========================================================= */
+
+.avatar-upload {
+
+    position: absolute;
+
+    right: 0;
+    bottom: 0;
+
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        rgba(15, 25, 29, 0.94);
+
+    color: var(--primary);
+
+    border:
+        2px solid
+        rgba(103, 232, 120, 0.35);
+
+    cursor: pointer;
+
+    font-size: 16px;
+
+    box-shadow:
+        0 6px 18px
+        rgba(0, 0, 0, 0.35);
+
+    transition: 0.25s ease;
+
+    z-index: 5;
+}
+
+
+.avatar-upload:hover {
+
+    transform: scale(1.08);
+
+    background:
+        rgba(103, 232, 120, 0.12);
+
+    border-color:
+        var(--primary);
+
+    box-shadow:
+        0 0 20px
+        rgba(103, 232, 120, 0.18);
+}
+
+
+/* =========================================================
+   PROFILE TITLE
+========================================================= */
+
+.profile-title {
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+.profile-label {
+
+    margin-bottom: 7px;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 2.5px;
+
+    color: var(--primary);
+
+    text-transform: uppercase;
+}
+
+
+.profile-title h1 {
+
+    margin-bottom: 7px;
+
+    font-size:
+        clamp(
+            28px,
+            4vw,
+            40px
+        );
+
+    line-height: 1.1;
+
+    letter-spacing: -1.2px;
+
+    color: var(--text-primary);
+}
+
+
+.profile-title p:last-child {
+
+    color: var(--text-secondary);
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   GLASS CARDS
+========================================================= */
+
+.profile-card {
+
+    position: relative;
+
+    margin-bottom: 25px;
+
+    padding: 30px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            rgba(25, 38, 43, 0.72),
+            rgba(13, 23, 27, 0.64)
+        );
+
+    backdrop-filter: blur(25px);
+
+    -webkit-backdrop-filter: blur(25px);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.08);
+
+    border-radius: var(--radius-lg);
+
+    box-shadow:
+        var(--glass-shadow);
+
+    overflow: hidden;
+}
+
+
+/* Top glass reflection */
+
+.profile-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.15),
+            transparent
+        );
+}
+
+
+/* =========================================================
+   CARD HEADING
+========================================================= */
+
+.card-heading {
+
+    margin-bottom: 25px;
+}
+
+
+.card-heading > div {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+}
+
+
+.card-icon {
+
+    width: 48px;
+    height: 48px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 15px;
+
+    background:
+        rgba(103, 232, 120, 0.08);
+
+    border:
+        1px solid
+        rgba(103, 232, 120, 0.16);
+
+    color: var(--primary);
+
+    font-size: 22px;
+
+    box-shadow:
+        inset 0 0 15px
+        rgba(103, 232, 120, 0.03);
+}
+
+
+.card-heading h2 {
+
+    margin-bottom: 4px;
+
+    font-size: 20px;
+
+    letter-spacing: -0.3px;
+
+    color: var(--text-primary);
+}
+
+
+.card-heading p {
+
+    color: var(--text-secondary);
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   INFORMATION GRID
+========================================================= */
+
+.profile-info-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 15px;
+}
+
+
+/* =========================================================
+   INFORMATION ITEMS
+========================================================= */
+
+.info-item {
+
+    padding: 20px;
+
+    background:
+        rgba(255, 255, 255, 0.035);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.07);
+
+    border-radius: 17px;
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.info-item:hover {
+
+    transform: translateY(-3px);
+
+    background:
+        rgba(103, 232, 120, 0.055);
+
+    border-color:
+        rgba(103, 232, 120, 0.17);
+
+    box-shadow:
+        0 15px 30px
+        rgba(0, 0, 0, 0.20);
+}
+
+
+.info-item span {
+
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: var(--text-muted);
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.7px;
+}
+
+
+.info-item strong {
+
+    display: block;
+
+    color: var(--text-primary);
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    word-break: break-word;
+}
+
+
+/* =========================================================
+   TRAVEL STATS
+========================================================= */
+
+.travel-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 15px;
+}
+
+
+.travel-stat {
+
+    position: relative;
+
+    padding: 25px 18px;
+
+    text-align: center;
+
+    background:
+        rgba(255, 255, 255, 0.035);
+
+    backdrop-filter: blur(14px);
+
+    -webkit-backdrop-filter: blur(14px);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.07);
+
+    border-radius: 18px;
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.travel-stat:hover {
+
+    transform: translateY(-4px);
+
+    background:
+        rgba(103, 232, 120, 0.055);
+
+    border-color:
+        rgba(103, 232, 120, 0.18);
+
+    box-shadow:
+        0 15px 35px
+        rgba(0, 0, 0, 0.25);
+}
+
+
+.travel-stat i {
+
+    display: block;
+
+    margin-bottom: 10px;
+
+    color: var(--primary);
+
+    font-size: 27px;
+
+    text-shadow:
+        0 0 20px
+        rgba(103, 232, 120, 0.15);
+}
+
+
+.travel-stat strong {
+
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: var(--text-primary);
+
+    font-size: 28px;
+
+    font-weight: 800;
+}
+
+
+.travel-stat span {
+
+    color: var(--text-secondary);
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   LOGOUT SECTION
+========================================================= */
+
+.logout-section {
+
+    display: flex;
+
+    justify-content: center;
+
+    padding: 15px 0 40px;
+}
+
+
+/* =========================================================
+   LOGOUT BUTTON
+========================================================= */
+
+.logout-main-btn {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 9px;
+
+    padding: 13px 22px;
+
+    border:
+        1px solid
+        rgba(255, 100, 90, 0.15);
+
+    border-radius: 14px;
+
+    background:
+        rgba(255, 255, 255, 0.035);
+
+    backdrop-filter: blur(15px);
+
+    -webkit-backdrop-filter: blur(15px);
+
+    color: #ff7770;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.25s ease,
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.logout-main-btn:hover {
+
+    background:
+        rgba(255, 90, 80, 0.07);
+
+    border-color:
+        rgba(255, 100, 90, 0.25);
+
+    color: #ff8b85;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 30px
+        rgba(0, 0, 0, 0.25);
+}
+
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+::-webkit-scrollbar {
+
+    width: 8px;
+}
+
+
+::-webkit-scrollbar-track {
+
+    background:
+        #091014;
+}
+
+
+::-webkit-scrollbar-thumb {
+
+    background:
+        rgba(103, 232, 120, 0.25);
+
+    border-radius: 20px;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+
+    background:
+        rgba(103, 232, 120, 0.45);
+}
+
+
+/* =========================================================
+   SELECTION
+========================================================= */
+
+::selection {
+
+    background:
+        rgba(103, 232, 120, 0.25);
+
+    color:
+        #ffffff;
+}
+
+
+/* =========================================================
+   RESPONSIVE - TABLET
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .profile-navbar {
+
+        width:
+            calc(100% - 24px);
+
+        margin-top: 12px;
+
+        top: 12px;
+    }
+
+
+    .profile-container {
+
+        width:
+            calc(100% - 24px);
+
+        margin-top: 35px;
+    }
+
+
+    .profile-header {
+
+        padding: 30px;
+
+        gap: 20px;
+    }
+
+
+    .profile-avatar {
+
+        width: 85px;
+        height: 85px;
+
+        font-size: 34px;
+    }
+
+
+    .profile-info-grid {
+
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE - MOBILE
+========================================================= */
+
+@media (max-width: 520px) {
+
+    .profile-navbar {
+
+        padding: 12px 14px;
+
+        border-radius: 17px;
+    }
+
+
+    .profile-logo a {
+
+        font-size: 20px;
+    }
+
+
+    .profile-nav-links {
+
+        gap: 5px;
+    }
+
+
+    .profile-nav-links a,
+    .profile-nav-links button {
+
+        padding: 8px 10px;
+
+        font-size: 12px;
+    }
+
+
+    .profile-nav-links a i,
+    .profile-nav-links button i {
+
+        font-size: 16px;
+    }
+
+
+    .profile-header {
+
+        flex-direction: column;
+
+        text-align: center;
+
+        padding: 30px 20px;
+
+        border-radius: 23px;
+    }
+
+
+    .profile-avatar {
+
+        width: 90px;
+        height: 90px;
+
+        font-size: 36px;
+    }
+
+
+    .profile-card {
+
+        padding: 22px 18px;
+
+        border-radius: 22px;
+    }
+
+
+    .card-heading h2 {
+
+        font-size: 18px;
+    }
+
+
+    .travel-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .travel-stat {
+
+        padding: 20px;
+    }
+}
+
+
+/* =========================================================
+   REDUCE MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    * {
+
+        scroll-behavior: auto !important;
+
+        transition: none !important;
+
+        animation: none !important;
+    }
+}

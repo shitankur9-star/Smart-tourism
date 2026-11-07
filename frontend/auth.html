@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>BengalTrail | Sign In</title>
+
+    <!-- Remix Icons -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="auth.css">
+
+</head>
+
+
+<body>
+
+    <!-- ==========================================
+         BACK TO HOME
+    =========================================== -->
+
+    <a
+        href="mainpage.html"
+        class="back-home"
+    >
+        <i class="ri-arrow-left-line"></i>
+        Back to BengalTrail
+    </a>
+
+
+    <!-- ==========================================
+         AUTH CONTAINER
+    =========================================== -->
+
+    <main class="auth-container">
+
+
+        <!-- ======================================
+             LEFT SIDE
+        ======================================= -->
+
+        <section class="auth-visual">
+
+            <div class="visual-content">
+
+                <p class="eyebrow">
+                    EXPLORE • DISCOVER • EXPERIENCE
+                </p>
+
+                <h1>
+                    Your next
+                    <span>North Bengal</span>
+                    adventure starts here.
+                </h1>
+
+                <p class="visual-description">
+                    Sign in to save your journeys,
+                    explore hidden destinations and
+                    create unforgettable travel experiences
+                    with BengalTrail.
+                </p>
+
+                <div class="visual-feature">
+
+                    <i class="ri-compass-3-line"></i>
+
+                    <div>
+                        <strong>
+                            Discover hidden Bengal
+                        </strong>
+
+                        <span>
+                            Explore destinations beyond
+                            the usual tourist routes.
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ======================================
+             RIGHT SIDE
+        ======================================= -->
+
+        <section class="auth-panel">
+
+
+            <!-- Logo -->
+
+            <div class="auth-logo">
+                BengalTrail
+            </div>
+
+
+            <!-- ==================================
+                 LOGIN FORM
+            =================================== -->
+
+            <div
+                class="auth-form-container"
+                id="loginContainer"
+            >
+
+                <div class="auth-heading">
+
+                    <p class="small-heading">
+                        WELCOME BACK
+                    </p>
+
+                    <h2>
+                        Sign in to your account
+                    </h2>
+
+                    <p>
+                        Continue your BengalTrail journey.
+                    </p>
+
+                </div>
+
+
+                <form id="loginForm">
+
+
+                    <div class="form-group">
+
+                        <label for="loginEmail">
+                            Email Address
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="ri-mail-line"></i>
+
+                            <input
+                                type="email"
+                                id="loginEmail"
+                                placeholder="Enter your email"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="loginPassword">
+                            Password
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="ri-lock-line"></i>
+
+                            <input
+                                type="password"
+                                id="loginPassword"
+                                placeholder="Enter your password"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                id="loginPasswordToggle"
+                            >
+                                <i class="ri-eye-line"></i>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="auth-btn"
+                    >
+                        Sign In
+                        <i class="ri-arrow-right-line"></i>
+                    </button>
+
+
+                    <p
+                        class="auth-message"
+                        id="loginMessage"
+                    ></p>
+
+                </form>
+
+
+                <p class="switch-auth">
+
+                    Don't have an account?
+
+                    <button
+                        type="button"
+                        id="showSignup"
+                    >
+                        Create Account
+                    </button>
+
+                </p>
+
+            </div>
+
+
+
+            <!-- ==================================
+                 SIGNUP FORM
+            =================================== -->
+
+            <div
+                class="auth-form-container hidden"
+                id="signupContainer"
+            >
+
+                <div class="auth-heading">
+
+                    <p class="small-heading">
+                        START YOUR JOURNEY
+                    </p>
+
+                    <h2>
+                        Create your account
+                    </h2>
+
+                    <p>
+                        Join BengalTrail and start exploring.
+                    </p>
+
+                </div>
+
+
+                <form id="signupForm">
+
+
+                    <div class="form-group">
+
+                        <label for="signupName">
+                            Full Name
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="ri-user-line"></i>
+
+                            <input
+                                type="text"
+                                id="signupName"
+                                placeholder="Enter your full name"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="signupEmail">
+                            Email Address
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="ri-mail-line"></i>
+
+                            <input
+                                type="email"
+                                id="signupEmail"
+                                placeholder="Enter your email"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="signupPassword">
+                            Password
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="ri-lock-line"></i>
+
+                            <input
+                                type="password"
+                                id="signupPassword"
+                                placeholder="Minimum 6 characters"
+                                minlength="6"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                id="signupPasswordToggle"
+                            >
+                                <i class="ri-eye-line"></i>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="auth-btn"
+                    >
+                        Create Account
+                        <i class="ri-arrow-right-line"></i>
+                    </button>
+
+
+                    <p
+                        class="auth-message"
+                        id="signupMessage"
+                    ></p>
+
+                </form>
+
+
+                <p class="switch-auth">
+
+                    Already have an account?
+
+                    <button
+                        type="button"
+                        id="showLogin"
+                    >
+                        Sign In
+                    </button>
+
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="auth.js"></script>
+
+</body>
+
+</html>

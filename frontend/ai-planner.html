@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        BengalTrail AI Trip Planner
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="ai-planner.css"
+    >
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+        rel="stylesheet"
+    >
+
+</head>
+
+
+<body>
+
+
+<header class="planner-navbar">
+
+    <a
+        href="mainpage.html"
+        class="logo"
+    >
+        Bengal<span>Trail</span>
+    </a>
+
+    <a
+        href="mainpage.html"
+        class="back-btn"
+    >
+        <i class="ri-arrow-left-line"></i>
+
+        Back
+    </a>
+
+</header>
+
+
+<main class="planner-container">
+
+
+    <!-- =========================================
+         HERO
+    ========================================== -->
+
+    <section class="planner-hero">
+
+        <span class="ai-badge">
+
+            <i class="ri-sparkling-line"></i>
+
+            AI POWERED
+
+        </span>
+
+
+        <h1>
+            Plan Your Perfect
+            <span>North Bengal Trip</span>
+        </h1>
+
+
+        <p>
+
+            Tell BengalTrail what kind of
+            experience you want and our AI
+            will find the best destinations
+            for you.
+
+        </p>
+
+    </section>
+
+
+
+    <!-- =========================================
+         FORM
+    ========================================== -->
+
+    <section class="planner-card">
+
+
+        <form id="aiPlannerForm">
+
+
+            <div class="form-grid">
+
+
+                <!-- Starting location -->
+
+                <!-- Starting location -->
+                <div class="form-group location-group">
+
+                    <label for="startingLocation">
+                        Starting Location
+                    </label>
+
+                    <div class="location-input-wrapper">
+
+                        <input
+                            type="text"
+                            id="startingLocation"
+                            placeholder="e.g. Salt Lake, Kolkata"
+                            autocomplete="off"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            id="verifyLocationBtn"
+                            class="verify-location-btn"
+                        >
+                            <i class="ri-map-pin-line"></i>
+                            Verify
+                        </button>
+
+                    </div>
+
+                    <p
+                        id="locationStatus"
+                        class="location-status"
+                    >
+                        Enter your city, town, locality, station
+                        or landmark and verify it.
+                    </p>
+
+                    <div
+                        id="locationResults"
+                        class="location-results hidden"
+                    ></div>
+
+                    <!-- Selected location data -->
+
+                    <input
+                        type="hidden"
+                        id="startingLatitude"
+                    >
+
+                    <input
+                        type="hidden"
+                        id="startingLongitude"
+                    >
+
+                    <input
+                        type="hidden"
+                        id="verifiedLocation"
+                    >
+
+                    <small class="location-attribution">
+                        Location data © OpenStreetMap contributors
+                    </small>
+
+                </div>
+
+
+
+                <!-- Date -->
+
+                <div class="form-group">
+
+                    <label>
+                        Travel Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="travelDate"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- People -->
+
+                <div class="form-group">
+
+                    <label>
+                        Number of People
+                    </label>
+
+                    <input
+                        type="number"
+                        id="people"
+                        min="1"
+                        value="2"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- Budget -->
+
+                <div class="form-group">
+
+                    <label>
+                        Total Budget
+                    </label>
+
+                    <input
+                        type="number"
+                        id="budget"
+                        min="500"
+                        placeholder="₹10,000"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- Duration -->
+
+                <div class="form-group">
+
+                    <label>
+                        Trip Duration
+                    </label>
+
+                    <select id="duration">
+
+                        <option value="2">
+                            2 Days
+                        </option>
+
+                        <option value="3" selected>
+                            3 Days
+                        </option>
+
+                        <option value="4">
+                            4 Days
+                        </option>
+
+                        <option value="5">
+                            5 Days
+                        </option>
+
+                        <option value="7">
+                            7 Days
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- Transport -->
+
+                <div class="form-group">
+
+                    <label>
+                        Transport Preference
+                    </label>
+
+                    <select id="transport">
+
+                        <option value="Bus">
+                            Bus
+                        </option>
+
+                        <option value="Train">
+                            Train
+                        </option>
+
+                        <option value="Shared Car">
+                            Shared Car
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- Experience -->
+
+                <div class="form-group full">
+
+                    <label>
+                        Preferred Experience
+                    </label>
+
+                    <select id="experience">
+
+                        <option value="Nature">
+                            Nature
+                        </option>
+
+                        <option value="Adventure">
+                            Adventure
+                        </option>
+
+                        <option value="Culture">
+                            Culture
+                        </option>
+
+                        <option value="Food">
+                            Food
+                        </option>
+
+                        <option value="Photography">
+                            Photography
+                        </option>
+
+                        <option value="Wildlife">
+                            Wildlife
+                        </option>
+
+                        <option value="Nature,Photography">
+                            Nature + Photography
+                        </option>
+
+                        <option value="Adventure,Nature">
+                            Adventure + Nature
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- Weather -->
+
+                <div class="form-group">
+
+                    <label>
+                        Weather Preference
+                    </label>
+
+                    <select id="weatherPreference">
+
+                        <option value="pleasant">
+                            Pleasant
+                        </option>
+
+                        <option value="cool">
+                            Cool
+                        </option>
+
+                        <option value="warm">
+                            Warm
+                        </option>
+
+                        <option value="any">
+                            Any Weather
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- Footfall -->
+
+                <div class="form-group">
+
+                    <label>
+                        Crowd Preference
+                    </label>
+
+                    <select id="footfallPreference">
+
+                        <option value="low">
+                            Less Crowd
+                        </option>
+
+                        <option value="medium">
+                            Moderate Crowd
+                        </option>
+
+                        <option value="high">
+                            I Don't Mind Crowds
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+            </div>
+
+
+
+            <button
+                type="submit"
+                class="generate-btn"
+                id="generateBtn"
+            >
+
+                <i class="ri-sparkling-2-line"></i>
+
+                Generate My AI Trip
+
+            </button>
+
+
+        </form>
+
+    </section>
+
+
+
+    <!-- =========================================
+         LOADING
+    ========================================== -->
+
+    <section
+        id="loading"
+        class="loading hidden"
+    >
+
+        <div class="loader"></div>
+
+        <h3>
+            BengalTrail AI is planning...
+        </h3>
+
+        <p>
+            Comparing destinations,
+            budgets and crowd levels.
+        </p>
+
+    </section>
+
+
+
+    <!-- =========================================
+         RESULTS
+    ========================================== -->
+
+    <section
+        id="resultsSection"
+        class="results-section hidden"
+    >
+
+        <div class="results-heading">
+
+            <span>
+                AI RESULTS
+            </span>
+
+            <h2>
+                Your Recommended Destinations
+            </h2>
+
+            <p>
+                Ranked according to your
+                preferences.
+            </p>
+
+        </div>
+
+
+        <div
+            id="resultsContainer"
+            class="results-grid"
+        ></div>
+
+    </section>
+
+
+</main>
+
+
+<script src="ai-planner.js"></script>
+
+</body>
+
+</html>
